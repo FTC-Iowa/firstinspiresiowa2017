@@ -3,6 +3,20 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "public"
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "/bigben",
+        "function": "bigben"
+      },
+      {
+        "source": "/event/*",
+        "function": "event"
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }

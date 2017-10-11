@@ -1,0 +1,85 @@
+{
+	"event": "event-name",
+	"matches": [ {
+			"number": "Q-1",
+			"red": {
+				"teams": [1234,5678],
+				"total": 140,
+				"auto": 90,
+				"autob": 0,
+				"telop": 30,
+				"endg": 20,
+				"pen": 0
+			},
+			"blue": {
+				"teams": [1111,2222],
+				"total": 140,
+				"auto": 80,
+				"autob": 0,
+				"telop": 60,
+				"endg": 0,
+				"pen": 0
+			}
+		},{
+			"number": "Q-2",
+			"red": {
+				"teams": [1234,5678],
+				"total": 140,
+				"auto": 90,
+				"autob": 0,
+				"telop": 30,
+				"endg": 20,
+				"pen": 0
+			},
+			"blue": {
+				"teams": [1111,2222],
+				"total": 140,
+				"auto": 80,
+				"autob": 0,
+				"telop": 60,
+				"endg": 0,
+				"pen": 0
+			}
+		},{
+			"number": "Q-3",
+			"red": {
+				"teams": [1234,5678],
+				"total": 140,
+				"auto": 90,
+				"autob": 0,
+				"telop": 30,
+				"endg": 20,
+				"pen": 0
+			},
+			"blue": {
+				"teams": [1111,2222],
+				"total": 140,
+				"auto": 80,
+				"autob": 0,
+				"telop": 60,
+				"endg": 0,
+				"pen": 0
+			}
+		},{
+			"number": "Q-4",
+			"red": {
+				"teams": [1234,5678],
+				"total": 140,
+				"auto": 90,
+				"autob": 0,
+				"telop": 30,
+				"endg": 20,
+				"pen": 0
+			},
+			"blue": {
+				"teams": [1111,2222],
+				"total": 140,
+				"auto": 80,
+				"autob": 0,
+				"telop": 60,
+				"endg": 0,
+				"pen": 0
+			}
+		}
+	]
+}
