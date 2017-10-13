@@ -10,8 +10,12 @@
         "function": "bigben"
       },
       {
-        "source": "/event/*",
-        "function": "event"
+        "source": "/matches",
+        "function": "matches"
+      },
+      {
+        "source": "/teams",
+        "function": "teams"
       }
     ]
   },

@@ -1,0 +1,249 @@
+[debug] [2017-10-13T04:12:15.499Z] ----------------------------------------------------------------------
+[debug] [2017-10-13T04:12:15.501Z] Command:       /usr/bin/node /home/vens/.config/npm-global/bin/firebase deploy
+[debug] [2017-10-13T04:12:15.501Z] CLI Version:   3.13.1
+[debug] [2017-10-13T04:12:15.501Z] Platform:      linux
+[debug] [2017-10-13T04:12:15.501Z] Node Version:  v8.6.0
+[debug] [2017-10-13T04:12:15.501Z] Time:          Thu Oct 12 2017 23:12:15 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:15.501Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-13T04:12:15.510Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-13T04:12:15.510Z] > authorizing via signed-in user
+[debug] [2017-10-13T04:12:15.512Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firstinspiresiowa  
+ Thu Oct 12 2017 23:12:15 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:15.803Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:15.804Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/firstinspiresiowa/tokens  
+ Thu Oct 12 2017 23:12:15 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:16.196Z] <<< HTTP RESPONSE 200
+[info] 4
+[info] 
+[info] === Deploying to 'firstinspiresiowa'...
+[info] 
+[info] i  deploying database, firestore, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2017-10-13T04:12:16.558Z] >>> HTTP REQUEST PUT https://firstinspiresiowa.firebaseio.com/.settings/rules.json?dryRun=true {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+ 
+ Thu Oct 12 2017 23:12:16 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.100Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax is valid
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2017-10-13T04:12:17.105Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/firstinspiresiowa:test { source: { files: [ [Object] ] } } 
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.248Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: rules file firestore.rules compiled successfully
+[debug] [2017-10-13T04:12:17.250Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "@google-cloud/firestore": "^0.8.2",
+    "firebase-admin": "^5.4.2",
+    "firebase-functions": "^0.7.1"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-13T04:12:17.252Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/firstinspiresiowa?view=CONSUMER_VIEW  
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.252Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/firstinspiresiowa?view=CONSUMER_VIEW  
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.664Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-13T04:12:17.678Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-10-13T04:12:17.679Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/firstinspiresiowa  
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.680Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/firstinspiresiowa/apiKeys  
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.845Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:17.916Z] <<< HTTP RESPONSE 200
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2017-10-13T04:12:17.923Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/firstinspiresiowa/rulesets { source: { files: [ [Object] ] } } 
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:17.924Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/firstinspiresiowa/databases/(default)/indexes  
+ Thu Oct 12 2017 23:12:17 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:18.168Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:18.195Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:18.196Z] [rules] created ruleset projects/firstinspiresiowa/rulesets/e4b6ca40-46b3-41a0-84d7-76a89e62023e
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-10-13T04:12:20.524Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/firstinspiresiowa/configs  
+ Thu Oct 12 2017 23:12:20 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:20.960Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (39.46 KB) for uploading
+[debug] [2017-10-13T04:12:22.596Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.firstinspiresiowa.appspot.com  
+ Thu Oct 12 2017 23:12:22 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:22.711Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:22.712Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.firstinspiresiowa.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 40404,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/tmp/firebase-functions-21773MWmLOLHWDGMf.zip',
+  fd: 15,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 40404 } 
+ Thu Oct 12 2017 23:12:22 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:23.067Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-10-13T04:12:23.090Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/firstinspiresiowa/uploads/-KwIwc_zHblD8b_gzyLZ?fileCount=2&message=  
+ Thu Oct 12 2017 23:12:23 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:23.671Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:23.671Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[info] ✔  hosting: 2 files uploaded successfully
+[info] i  database: releasing rules...
+[debug] [2017-10-13T04:12:24.601Z] >>> HTTP REQUEST PUT https://firstinspiresiowa.firebaseio.com/.settings/rules.json {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+ 
+ Thu Oct 12 2017 23:12:24 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:24.829Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules released successfully
+[debug] [2017-10-13T04:12:24.831Z] [rules] releasing cloud.firestore with ruleset projects/firstinspiresiowa/rulesets/e4b6ca40-46b3-41a0-84d7-76a89e62023e
+[debug] [2017-10-13T04:12:24.832Z] >>> HTTP REQUEST PUT https://firebaserules.googleapis.com/v1/projects/firstinspiresiowa/releases/cloud.firestore { name: 'projects/firstinspiresiowa/releases/cloud.firestore',
+  rulesetName: 'projects/firstinspiresiowa/rulesets/e4b6ca40-46b3-41a0-84d7-76a89e62023e' } 
+ Thu Oct 12 2017 23:12:24 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:24.994Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:24.994Z] [rules] updated release projects/firstinspiresiowa/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore
+[info] i  starting release process (may take several minutes)...
+[debug] [2017-10-13T04:12:24.996Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions  
+ Thu Oct 12 2017 23:12:24 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.217Z] <<< HTTP RESPONSE 200
+[info] i  functions: deleting function event...
+[info] i  functions: creating function change...
+[debug] [2017-10-13T04:12:25.220Z] Trigger is: 
+[info] i  functions: creating function matches...
+[debug] [2017-10-13T04:12:25.221Z] Trigger is: 
+[info] i  functions: updating function bigben...
+[debug] [2017-10-13T04:12:25.221Z] Trigger is: 
+[info] i  functions: updating function teams...
+[debug] [2017-10-13T04:12:25.221Z] Trigger is: 
+[debug] [2017-10-13T04:12:25.222Z] >>> HTTP REQUEST DELETE https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions/event  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.222Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions { sourceArchiveUrl: 'gs://staging.firstinspiresiowa.appspot.com/firebase-functions-source',
+  name: 'projects/firstinspiresiowa/locations/us-central1/functions/change',
+  entryPoint: 'change',
+  eventTrigger: 
+   { resource: 'projects/firstinspiresiowa/databases/(default)/documents/Teams/{teamID}',
+     eventType: 'providers/cloud.firestore/eventTypes/document.write' } } 
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.222Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions { sourceArchiveUrl: 'gs://staging.firstinspiresiowa.appspot.com/firebase-functions-source',
+  name: 'projects/firstinspiresiowa/locations/us-central1/functions/matches',
+  entryPoint: 'matches',
+  httpsTrigger: {} } 
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.222Z] >>> HTTP REQUEST PUT https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions/bigben { sourceArchiveUrl: 'gs://staging.firstinspiresiowa.appspot.com/firebase-functions-source',
+  name: 'projects/firstinspiresiowa/locations/us-central1/functions/bigben',
+  entryPoint: 'bigben',
+  timeout: '60s',
+  availableMemoryMb: 256,
+  httpsTrigger: {} } 
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.223Z] >>> HTTP REQUEST PUT https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions/teams { sourceArchiveUrl: 'gs://staging.firstinspiresiowa.appspot.com/firebase-functions-source',
+  name: 'projects/firstinspiresiowa/locations/us-central1/functions/teams',
+  entryPoint: 'teams',
+  timeout: '60s',
+  availableMemoryMb: 256,
+  httpsTrigger: {} } 
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.391Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.417Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.443Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.573Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.629Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.632Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/firstinspiresiowa/locations/us-central1/functions  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.633Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvY2hhbmdlL0c4WjM0dW9rN1Jr  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.633Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvbWF0Y2hlcy9Ha2hZd2o3Q3BHdw  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.638Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvYmlnYmVuL1d3YmRuTUtUU3kw  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.638Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvdGVhbXMvVGRxVjc0X0ZISjg  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.639Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvZXZlbnQvLTF1aFBEODRpZzg  
+ Thu Oct 12 2017 23:12:25 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:25.741Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.742Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.748Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.753Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.759Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:25.759Z] [functions] operation poll: change: create operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvY2hhbmdlL0c4WjM0dW9rN1Jr is not done.
+[debug] [2017-10-13T04:12:25.759Z] [functions] operation poll: matches: create operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvbWF0Y2hlcy9Ha2hZd2o3Q3BHdw is not done.
+[debug] [2017-10-13T04:12:25.760Z] [functions] operation poll: bigben: update operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvYmlnYmVuL1d3YmRuTUtUU3kw is not done.
+[debug] [2017-10-13T04:12:25.760Z] [functions] operation poll: teams: update operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvdGVhbXMvVGRxVjc0X0ZISjg is not done.
+[debug] [2017-10-13T04:12:25.760Z] [functions] operation poll: event: delete operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvZXZlbnQvLTF1aFBEODRpZzg is not done.
+[debug] [2017-10-13T04:12:25.778Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:30.766Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvY2hhbmdlL0c4WjM0dW9rN1Jr  
+ Thu Oct 12 2017 23:12:30 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:30.767Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvbWF0Y2hlcy9Ha2hZd2o3Q3BHdw  
+ Thu Oct 12 2017 23:12:30 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:30.768Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvYmlnYmVuL1d3YmRuTUtUU3kw  
+ Thu Oct 12 2017 23:12:30 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:30.769Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvdGVhbXMvVGRxVjc0X0ZISjg  
+ Thu Oct 12 2017 23:12:30 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:30.769Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvZXZlbnQvLTF1aFBEODRpZzg  
+ Thu Oct 12 2017 23:12:30 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:30.871Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:30.872Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:30.876Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:30.883Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:30.896Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:30.896Z] [functions] operation poll: change: create operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvY2hhbmdlL0c4WjM0dW9rN1Jr is not done.
+[debug] [2017-10-13T04:12:30.897Z] [functions] operation poll: matches: create operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvbWF0Y2hlcy9Ha2hZd2o3Q3BHdw is not done.
+[debug] [2017-10-13T04:12:30.897Z] [functions] operation poll: bigben: update operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvYmlnYmVuL1d3YmRuTUtUU3kw is not done.
+[debug] [2017-10-13T04:12:30.897Z] [functions] operation poll: teams: update operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvdGVhbXMvVGRxVjc0X0ZISjg is not done.
+[debug] [2017-10-13T04:12:30.897Z] [functions] operation poll: event: delete operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvZXZlbnQvLTF1aFBEODRpZzg is done.
+[debug] [2017-10-13T04:12:35.901Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvY2hhbmdlL0c4WjM0dW9rN1Jr  
+ Thu Oct 12 2017 23:12:35 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:35.902Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvbWF0Y2hlcy9Ha2hZd2o3Q3BHdw  
+ Thu Oct 12 2017 23:12:35 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:35.902Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvYmlnYmVuL1d3YmRuTUtUU3kw  
+ Thu Oct 12 2017 23:12:35 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:35.903Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvdGVhbXMvVGRxVjc0X0ZISjg  
+ Thu Oct 12 2017 23:12:35 GMT-0500 (CDT)
+[debug] [2017-10-13T04:12:36.020Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:36.021Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:36.024Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:36.037Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T04:12:36.038Z] [functions] operation poll: change: create operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvY2hhbmdlL0c4WjM0dW9rN1Jr is not done.
+[debug] [2017-10-13T04:12:36.038Z] [functions] operation poll: matches: create operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvbWF0Y2hlcy9Ha2hZd2o3Q3BHdw is not done.
+[debug] [2017-10-13T04:12:36.038Z] [functions] operation poll: bigben: update operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvYmlnYmVuL1d3YmRuTUtUU3kw is not done.
+[debug] [2017-10-13T04:12:36.038Z] [functions] operation poll: teams: update operations/Zmlyc3RpbnNwaXJlc2lvd2EvdXMtY2VudHJhbDEvdGVhbXMvVGRxVjc0X0ZISjg is not done.
