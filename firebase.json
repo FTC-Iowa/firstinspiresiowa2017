@@ -14,8 +14,8 @@
         "function": "matches"
       },
       {
-        "source": "/teams",
-        "function": "teams"
+        "source": "/update",
+        "function": "update"
       }
     ]
   },

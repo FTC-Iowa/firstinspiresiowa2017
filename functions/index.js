@@ -46,11 +46,43 @@ exports.matches = functions.https.onRequest((req, res) => {
 	res.status(200).send("done!");
 });
 
+function updateTeam(team) {
+    var eventId = this.eventId;
+    console.log("team update");
+}
 
-exports.teams = functions.https.onRequest((req, res) => {
+function updateMatches(match) {
+    console.log("match update");
+}
+
+
+function parseUpdate(update) {
+    var eventId = this.eventId;
+    console.log("update");
+    if (update == null) {
+        console.log("update == null");
+        return;
+    }
+    if( update.teams ) {
+        update.teams.forEach ( updateTeam );
+    }
+    if( update.matches ) {
+        update.matches.forEach ( updateMatches );
+    }
+}
+
+exports.update = functions.https.onRequest((req, res) => {
 	//var ret = "Teams: "
 	var data = req.body;
-	if(Array.isArray(data.teams)) {
+        var updates = data.updates;  // updates is an array of json objects
+        console.log("got data");
+        updates.forEach( parseUpdate, data ); // parse each update in the updates array
+        
+	res.status(200).send("done!");
+        
+        
+        
+	/*if(Array.isArray(data.teams)) {
 		data.teams.forEach( function (i) {
 	//		ret += i.number + ", ";
 			var docname = 'Teams/' + i.number;
@@ -66,8 +98,7 @@ exports.teams = functions.https.onRequest((req, res) => {
 			});
 			
 		})
-	}
-	res.status(200).send("done!");
+	}*/
 });
 
 
