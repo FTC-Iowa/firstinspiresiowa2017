@@ -3,27 +3,9 @@ const admin = require('firebase-admin');
 const Firestore = require('@google-cloud/firestore');
 
 admin.initializeApp (functions.config().firebase);
-const firestore = new Firestore(functions.config().firebase)
+const firestore = new Firestore(functions.config().firebase);
 
-
-exports.bigben = functions.https.onRequest((req, res) => {
-	const hours = (new Date().getHours() % 12) + 1;
-	res.status(200).send(`<!doctype html>
-		<head>
-			<title>Time</title>
-		</head>
-		<body>
-			${'BONG '. repeat(hours)}<br>
-			req.method=${req.method}<br>
-			req.body.text=${req.body.text}
-		</body>
-		</html>`);
-});
-
-exports.change = functions.firestore.document('Teams/{teamID}').onWrite((event) => {
-	console.log("document changed!!!");
-})
-
+/*
 exports.matches = functions.https.onRequest((req, res) => {
 	var matches = req.body.matches;
 	if(Array.isArray(matches)){
@@ -44,20 +26,28 @@ exports.matches = functions.https.onRequest((req, res) => {
 		});
 	}
 	res.status(200).send("done!");
-});
+});*/
 
 function updateTeam(team) {
     var eventId = this.eventId;
     console.log("team update");
+    var eventDocName = "events/" + this.eventId;
+    var divisionDocName = eventDocName + "/divisions/" + this.divisionId;
+    var doc = firestore.collection(divisionDocName);
+    
 }
 
 function updateMatches(match) {
     console.log("match update");
 }
 
-
+function updateRankings(ranking) {
+    
+}
+ 
 function parseUpdate(update) {
     var eventId = this.eventId;
+    var divisionId = this.divisionId;
     console.log("update");
     if (update == null) {
         console.log("update == null");
@@ -69,16 +59,35 @@ function parseUpdate(update) {
     if( update.matches ) {
         update.matches.forEach ( updateMatches );
     }
+    if( update.rankings ) {
+        update.rankings.forEach ( updateRankings );
+    }
 }
 
 exports.update = functions.https.onRequest((req, res) => {
 	//var ret = "Teams: "
 	var data = req.body;
-        var updates = data.updates;  // updates is an array of json objects
-        console.log("got data");
-        updates.forEach( parseUpdate, data ); // parse each update in the updates array
+        //var updates = data.updates;  // updates is an array of json objects
         
-	res.status(200).send("done!");
+        console.log("got data");
+        //updates.forEach( parseUpdate, data ); // parse each update in the updates array
+        
+        if (data.passphrase !== "x") {
+            res.status(401).sent("Incorrect Passphrase");
+        }
+        
+        if ( data.data && data.eventId && data.divisionId ) {
+        
+            var event = data.eventId;
+            var division = data.divisionId;
+
+            var doc = firestore.collection("events").doc(event).collection("divisions").doc(division);
+            doc.set(data.data);
+            res.status(200).send("done!");
+        }
+        
+        res.status(400).send("Invalid request");
+        
         
         
         

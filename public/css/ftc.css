@@ -1,0 +1,269 @@
+html, body {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	background-color: #fff;
+    font-family: 'HelveticaNeue', Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+header, footer {
+	background-color: #003974;
+	color: #fff;
+	text-align: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-bottom: 5px;
+    padding-top: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    z-index: 50;
+}
+
+nav {
+    display:inline-block;
+    text-align: center;
+    width: 320px;
+}
+
+nav table {
+    display:inline-table;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 0px;
+    table-layout: fixed;
+}
+
+nav table .first-row {
+    font-size: medium;
+}
+
+nav table .second-row, nav table .third-row {
+    font-size: small;
+}
+
+nav td {
+    
+}
+
+nav a:link, nav a:visited {
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    color: black;
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+nav a.selected {
+    background-color: #F57F26;
+    color: white;
+}
+
+
+
+
+main {
+    display: block;
+    position: relative;
+    margin-top: 87px;
+    margin-bottom: 40px;
+    padding: 10px;
+    z-index: 0;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 0px;
+    height: 30px;
+    width: 100%;
+    z-index: 50;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display:table;
+}
+
+#event_name {
+    display:table-cell;
+    vertical-align: middle;
+    height:100%;
+    width:100%;
+}
+
+.hidden {
+    display: none;
+}
+
+
+article {
+    text-align: center;
+    width: 100%;
+    
+}
+
+article table {
+    width: 600px;
+}
+
+@media (max-width: 600px)
+{
+    article table {
+        width: 100%;
+    }   
+}
+
+table td {
+    text-align: center;
+    padding: 2px;
+}
+
+:root {
+    --red-color: #FF4444;
+    --blue-color: #8080FF;
+    --gray-color: #DDD;
+}
+
+.matches table tr:nth-child(even) {
+    filter: brightness(70%);
+}
+
+.matches table tr td:first-of-type {
+    background-color: var(--gray-color);
+}
+
+.matches table tr td:nth-of-type(2),
+.matches table tr td:nth-of-type(3){
+    background-color: var(--red-color);
+}
+
+.matches table tr td:nth-of-type(4),
+.matches table tr td:nth-of-type(5) {
+    background-color: var(--blue-color);
+}
+
+
+.results table tbody:nth-of-type(even) {
+    filter: brightness(70%);
+}
+
+.results table tbody td:nth-last-of-type(4) {
+    background-color: var(--gray-color);
+}
+
+.results table tbody td:nth-last-of-type(2) {
+    background-color: var(--red-color);
+}
+
+.results table tbody td:nth-last-of-type(1) {
+    background-color: var(--blue-color);
+}
+
+.red-win {
+    background-color: var(--red-color);
+}
+
+.blue-win {
+    background-color: var(--blue-color);
+}
+
+.tie-win {
+    background-color: var(--gray-color);
+}
+
+
+
+.rankings th {
+    font-size: small;
+}
+
+.rankings td {
+    font-size: small;
+    background-color: var(--gray-color);
+}
+
+.rankings table tr:nth-child(even) {
+    filter: brightness(70%);
+}
+
+
+
+.teams td {
+    background-color: var(--gray-color);
+}
+
+.teams table tr:nth-child(even) {
+    filter: brightness(70%);
+}
+
+#templates {
+    display:none;
+}
+
+.fc-scroller {
+    height: 100%;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    display: none;
+}
+
+#detail-back {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	z-index: 90;
+	background-color: rgba(0, 0, 0, .2);
+	text-align: center;
+}
+#detail-box {
+	width: 300px;
+	margin: 100px auto auto auto;
+	background-color: #fff;
+	border: 2px solid #444;
+	color: #000;
+        padding-bottom: 10px;
+}
+
+#detail-box h2, #detail-box h3 {
+	margin: 0px;
+	padding: 2px 0px 2px 0px;
+}
+
+#detail-box table {
+	margin: auto;
+}
+#detail-box td {
+	text-align: right;
+	white-space: nowrap;
+	padding-right: 4px;
+	padding-left: 25px;
+}
+
+
+#detail-box .sep td { border-top: 1px solid black; }
+
+#detail-box table tr:nth-child(even) {
+    filter: brightness(70%);
+}
+
+#detail-box table tr td:nth-child(2) {
+    background-color: var(--red-color);
+}
+
+#detail-box table tr td:nth-child(3) {
+    background-color: var(--blue-color);
+}

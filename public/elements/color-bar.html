@@ -1,0 +1,59 @@
+<link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+
+
+<dom-module id="color-bar">
+
+    <template>
+        <style>
+            .color-strip {
+                height: 10px;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                z-index: 20;                
+            }
+            
+            .color-strip div {
+                display: block;
+                height: 100%;
+                width: 25%;
+                float: left;
+            }
+            .fteal {
+                background-color: #00a651;
+            }
+            .fred {
+                background-color: #ed1c24;
+            }
+            .fyellow {
+                background-color: #f57e25;
+            }
+            .fblue {
+                background-color: #009cd7;
+            }
+        </style>
+        
+        <div class="color-strip">
+            <div class="fteal"></div>
+            <div class="fred"></div>
+            <div class="fyellow"></div>
+            <div class="fblue"></div>
+	</div>
+    </template>
+    
+    <script>
+      // Define the class for a new element called custom-element
+      class ColorBar extends Polymer.Element {
+        static get is() { return "color-bar"; }
+        constructor() {
+            super();
+        }
+      }
+      // Register the new element with the browser
+      customElements.define(ColorBar.is, ColorBar);
+    </script>
+
+</dom-module>
