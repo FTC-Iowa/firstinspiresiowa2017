@@ -33,7 +33,39 @@ Rankings.prototype = {
             this.updateRow(i, rankings[i]);
         }
         
+        this.setupDetailsBox();
+        ui.registerCallback(this, this.div.name + "-rankings");
+        
+        
         document.getElementById("content").appendChild(this.dom);
+    },
+    
+    setupDetailsBox: function() {
+        this.detailsBox = { 
+            dom: document.getElementById("rank-details"),
+           /* name: document.getElementById("match-details-name"),
+            score: document.getElementById("match-details-score"),
+            red: {
+                teams: document.getElementById("match-details-red-teams"),
+                total: document.getElementById("match-details-red-total"), 
+                auto: document.getElementById("match-details-red-auto"),
+                autobonus: document.getElementById("match-details-red-autobonus"),
+                teleop: document.getElementById("match-details-red-teleop"),
+                endg: document.getElementById("match-details-red-endg"),
+                penalties: document.getElementById("match-details-red-penalties")
+            },
+            blue: {
+                teams: document.getElementById("match-details-blue-teams"),
+                total: document.getElementById("match-details-blue-total"), 
+                auto: document.getElementById("match-details-blue-auto"),
+                autobonus: document.getElementById("match-details-blue-autobonus"),
+                teleop: document.getElementById("match-details-blue-teleop"),
+                endg: document.getElementById("match-details-blue-endg"),
+                penalties: document.getElementById("match-details-blue-penalties")
+            }
+            */
+        };
+        
     },
     
     onUpdate: function(rankings) {
@@ -42,12 +74,14 @@ Rankings.prototype = {
         }
     },
     
-    updateRow: function(i, ranking) {
-        var row = document.getElementById(this.div.name + "-ranking-" + i);
+    updateRow: function(idx, ranking) {
+        var row = document.getElementById(this.div.name + "-ranking-" + idx);
         if ( row ) {
         } else {
             row = document.createElement("tr");
-            row.setAttribute("id", this.div.name + "-ranking-" + i);
+            row.setAttribute("id", this.div.name + "-ranking-" + idx);
+            var callback = "ui.onCallback('" + this.div.name + "-rankings', " + idx + ")";
+            row.setAttribute("onclick", callback);
             
             var cells = [];
             for(var i=0;i<7;i++) {
@@ -65,6 +99,12 @@ Rankings.prototype = {
         cells[4].textContent = ranking.rp;
         cells[5].textContent = ranking.highest;
         cells[6].textContent = ranking.matches;
+        
+    }, 
+    
+    onCallback: function(number) {
+        console.log("ranking on callback: " + number);
+        //ui.showDetails(this.detailsBox.dom);
         
     }
 };

@@ -126,6 +126,13 @@ Event.prototype = {
                     }
                 };
                 $('#calendar').fullCalendar(calendar);
+                
+                //ui.showSchedule();
+            }
+            
+            if(data.hasOwnProperty("info")) {
+                var info = document.getElementById("event-info-area");
+                info.innerHTML = data.info;
             }
             
             console.log(data);

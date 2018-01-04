@@ -7,22 +7,14 @@
     "cleanUrls" : true,
     "trailingSlash": false,
     "rewrites": [
-            {
-                "source": "/event/*",
-                "destination": "/event.html"
-            },
-      {
-        "source": "/bigben",
-        "function": "bigben"
-      },
-      {
-        "source": "/matches",
-        "function": "matches"
-      },
-      {
-        "source": "/update",
-        "function": "update"
-      }
+        {
+            "source": "/event/**",
+            "destination": "/event.html"
+        },
+        {
+            "source": "/update",
+            "function": "update"
+        }
     ]
   },
   "firestore": {

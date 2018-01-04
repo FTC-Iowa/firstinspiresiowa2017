@@ -88,12 +88,12 @@ MatchList.prototype = {
             },
             blue: {
                 teams: document.getElementById("match-details-blue-teams"),
-                total: document.getElementById("match-details-red-total"), 
-                auto: document.getElementById("match-details-red-auto"),
-                autobonus: document.getElementById("match-details-red-autobonus"),
-                teleop: document.getElementById("match-details-red-teleop"),
-                endg: document.getElementById("match-details-red-endg"),
-                penalties: document.getElementById("match-details-red-penalties")
+                total: document.getElementById("match-details-blue-total"), 
+                auto: document.getElementById("match-details-blue-auto"),
+                autobonus: document.getElementById("match-details-blue-autobonus"),
+                teleop: document.getElementById("match-details-blue-teleop"),
+                endg: document.getElementById("match-details-blue-endg"),
+                penalties: document.getElementById("match-details-blue-penalties")
             }
             
         };
@@ -140,19 +140,8 @@ MatchList.prototype = {
         
         this.setTeamDetailsBox(this.detailsBox.red, match.red);
         this.setTeamDetailsBox(this.detailsBox.blue, match.blue);
-        
-        //this.detailsBox.red.teams.innerHTML(redString);
-        
-        
-        
-        var back = document.getElementById("detail-back");
-        back.className = "";
-        
-        $('#detail-back').click(function() { 
-            var back = document.getElementById("detail-back");
-            back.className = "hidden";
-        });
-        
+            
+        ui.showDetails(this.detailsBox.dom);
     },
     
     onUpdate: function(matches) {
@@ -298,13 +287,13 @@ MatchList.prototype = {
         }
         
         cells[1].textContent = redScore + "-" + blueScore + " " + winner;
-        cells[2].textContent = match.red.teams[0].number;
-        cells[3].textContent = match.blue.teams[0].number;
-        cells[4].textContent = match.red.teams[1].number;
-        cells[5].textContent = match.blue.teams[1].number;
+        cells[2].textContent = match.red.teams[0].number + (match.red.teams[0].surrogate ? "*" : "");
+        cells[3].textContent = match.blue.teams[0].number + (match.blue.teams[0].surrogate ? "*" : "");
+        cells[4].textContent = match.red.teams[1].number + (match.red.teams[1].surrogate ? "*" : "");
+        cells[5].textContent = match.blue.teams[1].number + (match.blue.teams[1].surrogate ? "*" : "");
         if (match.red.teams.length ===  3) {
-            cells[6].textContent = match.red.teams[2].number;
-            cells[7].textContent = match.blue.teams[2].number;
+            cells[6].textContent = match.red.teams[2].number + (match.red.teams[2].surrogate ? "*" : "");
+            cells[7].textContent = match.blue.teams[2].number + (match.blue.teams[2].surrogate ? "*" : "");
         } 
     }
 };

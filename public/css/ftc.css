@@ -63,7 +63,7 @@ nav a:link, nav a:visited {
 }
 
 nav a.selected {
-    background-color: #F57F26;
+    background-color: var(--selected-color);
     color: white;
 }
 
@@ -133,6 +133,7 @@ table td {
     --red-color: #FF4444;
     --blue-color: #8080FF;
     --gray-color: #DDD;
+    --selected-color: #F57F26;
 }
 
 .matches table tr:nth-child(even) {
@@ -266,4 +267,47 @@ table td {
 
 #detail-box table tr td:nth-child(3) {
     background-color: var(--blue-color);
+}
+
+#index ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+#index ul li {
+    padding-bottom: 10px;
+}
+
+#index ul li a:link,
+#index ul li a:visited {
+    background-color: #fff;
+    color: #000;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    outline-width: 1px;
+    outline-style: solid;
+}
+
+#index ul li a:hover,
+#index ul li a:active {
+    background-color: var(--selected-color);
+}
+
+.nonavbar {
+    margin-top: 38px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#event-information p {
+    width: 320px;
+}
+
+#disclaimer {
+    font-size: small;
 }

@@ -19,6 +19,11 @@ Ui.prototype = {
         this.activeSecondRow = "information";
         this.activeThirdRow = "teams";
         this.callbacks = {};
+        
+        this.detailsBack = document.getElementById("detail-back");
+        this.detailsBox = document.getElementById("detail-box");
+        this.templates = document.getElementById("templates");
+        this.detailsBack.setAttribute("onclick", "ui.hideDetails()");
     },
     
     onBtnClick: function(name) {
@@ -66,7 +71,7 @@ Ui.prototype = {
     hideAll: function() {
         var articles = document.getElementById("content").getElementsByTagName("article");
         for (var i=0, len=articles.length; i<len; i++ ){
-            articles[i].className += ' hidden';
+            this.hide(articles[i]);
         }
     },
     
@@ -110,9 +115,9 @@ Ui.prototype = {
     setAwardsVisible: function(state) {
         var awards = document.getElementById("td-awards");
         if(state) {
-            awards.className = "";
+            this.unhide(awards);
         } else {
-            awards.className = "hidden";
+            this.hide(awards);
         }
     },
     
@@ -129,6 +134,30 @@ Ui.prototype = {
         } else {
             console.log("unkown callback function");
         }
+    },
+    
+    showSchedule: function() {
+        var e = document.getElementById("td-schedule");
+        this.unhide(e);
+    },
+    
+    hide: function(element) {
+       element.className += ' hidden'; 
+    },
+    
+    unhide: function(element) {
+        element.className = element.className.replace(/hidden/g, '');
+    },
+    
+    showDetails: function(content) {
+        this.detailsBox.appendChild(content);
+        this.unhide(this.detailsBack);
+    },
+    
+    hideDetails: function() {
+        this.hide(this.detailsBack);
+        var content = this.detailsBox.firstElementChild;
+        this.templates.appendChild(content);
     }
 };
 
