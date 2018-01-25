@@ -52,6 +52,14 @@ TeamList.prototype = {
             var cell3 = document.createElement("td");
             var cell3_content = document.createElement("input");
             cell3_content.setAttribute("type", "checkbox");
+            cell3.className = "team-notifcation-enable";
+            if(thisEvent.notifications.areEnabled) {
+                var sub = window.localStorage.getItem("notification-" + number);
+                
+                
+            } else {
+                cell3.className += " hidden";
+            }
             cell3.appendChild(cell3_content);
             row.appendChild(cell3);
             this.tbody.appendChild(row);

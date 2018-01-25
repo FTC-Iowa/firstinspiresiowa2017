@@ -158,6 +158,25 @@ Ui.prototype = {
         this.hide(this.detailsBack);
         var content = this.detailsBox.firstElementChild;
         this.templates.appendChild(content);
+    },
+    
+    onNotificationEnableClick: function() {
+        console.log("onNotificationEnableClick");
+        thisEvent.notifications.enable();
+    },
+    
+    setNotificationsEnabled: function() {
+        console.log("hide notification button");
+        var btns = document.getElementsByClassName("notification-enable");
+        for (var i=0; i<btns.length; i++ ) {
+            this.hide(btns[i]);
+        }
+        
+        var checks = document.getElementsByClassName("team-notifcation-enable");
+        for (var i=0; i<checks.length; i++ ) {
+            this.unhide(checks[i]);
+            console.log("showing check", i);
+        }
     }
 };
 

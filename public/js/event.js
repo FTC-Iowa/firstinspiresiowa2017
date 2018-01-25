@@ -6,8 +6,8 @@ function onButtonClick(p) {
     p.target.className += " selected";
 }
 
-var Event = function(event_doc) {
-    this.init(event_doc);
+var Event = function(event_doc, messaging) {
+    this.init(event_doc, messaging);
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
         console.log("Firebase SDK loaded with " + features.join(', '));
         db = firebase.firestore();
-
+        var messaging = firebase.messaging();
         var url_path = window.location.pathname;
         event_id = url_path.split("/")[2];
         //console.log("Event_ID = " + this.event_id);
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if(event_id) {
         var event_doc = db.collection("events").doc(event_id);
-        var e = new Event(event_doc);
+        var e = new Event(event_doc, messaging);
     } else {
 
     }   
@@ -47,14 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 Event.prototype = {
     
-    init: function(event_doc) {
+    init: function(event_doc, messaging) {
         this.doc = event_doc;
         console.log("init function");
         thisEvent = this;
         this.divisions = new Object();
         this.doc.get().then(this.on_event_first_loaded);
         
-        
+        this.notifications = new Notifications(messaging);
         
 /*
             if(this.event_id) {

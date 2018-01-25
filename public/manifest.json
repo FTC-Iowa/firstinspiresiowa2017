@@ -1,0 +1,8 @@
+{
+    "short_name": "FirstInspiresIowa",
+    "name": "FIRST Inspires Iowa Scores",
+    "background_color": "#003974",
+    "theme_color": "#003974",
+    "gcm_sender_id": "103953800507",
+    "display": "standalone"
+}
