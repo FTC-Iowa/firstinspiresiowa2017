@@ -311,3 +311,33 @@ table td {
 #disclaimer {
     font-size: small;
 }
+
+.color-strip {
+    height: 10px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 20;                
+}
+
+.color-strip div {
+    display: block;
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+.fteal {
+    background-color: #00a651;
+}
+.fred {
+    background-color: #ed1c24;
+}
+.fyellow {
+    background-color: #f57e25;
+}
+.fblue {
+    background-color: #009cd7;
+}

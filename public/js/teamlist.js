@@ -55,7 +55,9 @@ TeamList.prototype = {
             cell3.className = "team-notifcation-enable";
             if(thisEvent.notifications.areEnabled) {
                 var sub = window.localStorage.getItem("notification-" + number);
-                
+                if(sub) {
+                    
+                }
                 
             } else {
                 cell3.className += " hidden";
