@@ -41,5 +41,11 @@ Division.prototype = {
         this.teamList.onUpdate(data.teams);
         this.matchList.onUpdate(data.matches);
         this.rankings.onUpdate(data.rankings);
+    },
+    
+    searchTeam: function(team) {
+        this.teamList.searchTeam(team);
+        this.matchList.searchTeam(team);
+    //    this.rankings.searchTeam(team);
     }
 };

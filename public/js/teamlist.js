@@ -14,6 +14,7 @@ TeamList.prototype = {
     init: function(div, teamArray) {
         console.log("Init TeamList");
         
+        this.search = 0;
         this.div = div;
         this.data = teamArray;
         this.dom = document.getElementById("teamlist").cloneNode(true);
@@ -30,6 +31,7 @@ TeamList.prototype = {
     },
     
     onUpdate: function(teams) {
+        this.teams = teams;
         for (var i = 0, len = teams.length; i < len; i++) {
             this.updateRow(teams[i]);
         }     
@@ -72,6 +74,11 @@ TeamList.prototype = {
         cells[0].textContent = team.number;
         cells[1].textContent = team.name;
         
+        if (team.number === this.search) {
+            row.setAttribute("style","background-color:yellow;");
+        } else {
+            row.setAttribute("style", "");
+        }
     },
     
     getTeamName: function(number) {
@@ -81,5 +88,10 @@ TeamList.prototype = {
             }
         }
         return "";
+    },
+    
+    searchTeam: function(team) {
+        this.search = team;
+        this.onUpdate(this.teams);
     }
 };

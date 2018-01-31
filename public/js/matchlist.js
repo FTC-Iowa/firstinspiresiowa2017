@@ -188,6 +188,28 @@ MatchList.prototype = {
         cells[3].textContent = blue1;
         cells[4].textContent = blue2;
         
+        cells[1].setAttribute("style", "");
+        cells[2].setAttribute("style", "");
+        cells[3].setAttribute("style", "");
+        cells[4].setAttribute("style", "");
+        
+        if(this.search === match.red.teams[0].number) {
+            cells[1].setAttribute("style", "font-weight: bold; color:white");
+            //row.setAttribute("style", "background-color: yellow");
+        } else if(this.search === match.red.teams[1].number) {
+            cells[2].setAttribute("style", "font-weight: bold; color:white");
+            //row.setAttribute("style", "background-color: yellow");
+        } else if(this.search === match.blue.teams[0].number) {
+            cells[3].setAttribute("style", "font-weight: bold; color:white");
+            //row.setAttribute("style", "background-color: yellow");
+        } else if(this.search === match.blue.teams[1].number) {
+            cells[4].setAttribute("style", "font-weight: bold; color:white");
+            //row.setAttribute("style", "background-color: yellow");
+        } else {
+            //row.setAttribute("style", "");
+        }
+        
+        
     },
     
     updateRowResults: function(idx, match) {
@@ -286,6 +308,11 @@ MatchList.prototype = {
             winner = "T";
         }
         
+        cells[2].setAttribute("style", "");
+        cells[3].setAttribute("style", "");
+        cells[4].setAttribute("style", "");
+        cells[5].setAttribute("style", "");
+        
         cells[1].textContent = redScore + "-" + blueScore + " " + winner;
         cells[2].textContent = match.red.teams[0].number + (match.red.teams[0].surrogate ? "*" : "");
         cells[3].textContent = match.blue.teams[0].number + (match.blue.teams[0].surrogate ? "*" : "");
@@ -294,6 +321,31 @@ MatchList.prototype = {
         if (match.red.teams.length ===  3) {
             cells[6].textContent = match.red.teams[2].number + (match.red.teams[2].surrogate ? "*" : "");
             cells[7].textContent = match.blue.teams[2].number + (match.blue.teams[2].surrogate ? "*" : "");
+            cells[6].setAttribute("style", "");
+            cells[7].setAttribute("style", "");
         } 
+        
+        
+        
+        
+        if(this.search === match.red.teams[0].number) {
+            cells[2].setAttribute("style", "font-weight: bold; color:white");
+        } else if(this.search === match.red.teams[1].number) {
+            cells[4].setAttribute("style", "font-weight: bold; color:white");
+        } else if(this.search === match.blue.teams[0].number) {
+            cells[3].setAttribute("style", "font-weight: bold; color:white");
+        } else if(this.search === match.blue.teams[1].number) {
+            cells[5].setAttribute("style", "font-weight: bold; color:white");
+        } else if (match.red.teams.length === 3 && this.search === match.red.teams[2].number) {
+            cells[6].setAttribute("style", "font-weight: bold; color:white");
+        } else if (match.blue.teams.length === 3 && this.search === match.blue.teams[2].number) {
+            cells[7].setAttribute("style", "font-weight: bold; color:white");  
+        }
+        
+    },
+    
+    searchTeam: function(team) {
+        this.search = team;
+        this.onUpdate(this.matches);
     }
 };
