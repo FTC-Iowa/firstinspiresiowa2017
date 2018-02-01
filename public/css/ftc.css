@@ -341,3 +341,53 @@ table td {
 .fblue {
     background-color: #009cd7;
 }
+
+.awards table {
+    padding-top: 20px;
+}
+
+.awards th {
+    background: #ddd;
+    font-size: x-large;
+}
+
+.awards td {
+  
+        text-align: left;
+    
+}
+
+.awards dl {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 0;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.awards dt {
+    font-weight: bold;
+}
+
+.awards dd {
+    margin-left: 20px;
+    padding-top: 2px;
+}
+
+.awards h2 {
+    background: #ddd;
+    font-size: x-large;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 5px;
+}
+
+.awards div {
+    background: #fafafa;
+    padding: 0px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    outline-style: solid;
+    outline-width: 2px;
+    max-width: 500px;
+}

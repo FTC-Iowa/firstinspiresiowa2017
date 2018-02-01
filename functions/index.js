@@ -63,6 +63,13 @@ exports.update = functions.https.onRequest((req, res) => {
 
             var doc = firestore.collection("events").doc(event).collection("divisions").doc(division);
             doc.set(data.data);
+            
+            if ( data.awards ) {
+                console.log("Saving Award Data!");
+                var awarddoc = firestore.collection("events").doc(event).collection("awards").doc("awards");
+                awarddoc.set(data.awards);
+            }
+            
             res.status(200).send("done!");
         } else {
             res.status(400).send("Invalid request");
