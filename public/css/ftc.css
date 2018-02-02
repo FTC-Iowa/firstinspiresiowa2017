@@ -391,3 +391,40 @@ table td {
     outline-width: 2px;
     max-width: 500px;
 }
+
+
+#schedule-details dl {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 0;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#schedule-details dt {
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+#schedule-details dd {
+    margin-left: 20px;
+    padding-top: 2px;
+}
+
+#schedule-details h2 {
+    background: #ddd;
+    font-size: x-large;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 5px;
+}
+
+.awardsdaf div {
+    background: #fafafa;
+    padding: 0px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    outline-style: solid;
+    outline-width: 2px;
+    max-width: 500px;
+}

@@ -1,0 +1,37 @@
+[debug] [2018-02-02T18:10:36.884Z] ----------------------------------------------------------------------
+[debug] [2018-02-02T18:10:36.886Z] Command:       /usr/bin/node /home/vens/.config/npm-global/bin/firebase serve --only hosting,functions
+[debug] [2018-02-02T18:10:36.886Z] CLI Version:   3.15.2
+[debug] [2018-02-02T18:10:36.886Z] Platform:      linux
+[debug] [2018-02-02T18:10:36.886Z] Node Version:  v9.5.0
+[debug] [2018-02-02T18:10:36.886Z] Time:          Fri Feb 02 2018 12:10:36 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:36.886Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-02T18:10:36.895Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-02T18:10:36.895Z] > authorizing via signed-in user
+[debug] [2018-02-02T18:10:36.897Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firstinspiresiowa  
+ Fri Feb 02 2018 12:10:36 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:37.604Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-02T18:10:37.605Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/firstinspiresiowa/tokens  
+ Fri Feb 02 2018 12:10:37 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:38.286Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/vens/Projects/firstinspiresiowa'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-02-02T18:10:38.610Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/firstinspiresiowa  
+ Fri Feb 02 2018 12:10:38 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:38.611Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/firstinspiresiowa/apiKeys  
+ Fri Feb 02 2018 12:10:38 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:38.611Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/firstinspiresiowa  
+ Fri Feb 02 2018 12:10:38 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:38.884Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-02T18:10:38.914Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-02T18:10:38.915Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/116116372483/clients/_:getWebAppConfig  
+ Fri Feb 02 2018 12:10:38 GMT-0600 (CST)
+[debug] [2018-02-02T18:10:39.042Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-02T18:10:39.425Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: update: http://localhost:5001/firstinspiresiowa/us-central1/update
+[info] ✔  functions: subscribe: http://localhost:5001/firstinspiresiowa/us-central1/subscribe

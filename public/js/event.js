@@ -87,6 +87,14 @@ Event.prototype = {
             }
             
             if(thisEvent.eventData.hasOwnProperty("schedule")) {
+                
+                
+                
+                
+                
+                
+                
+                
                 var calendar = {
                     header: {
                         left: '',
@@ -107,6 +115,19 @@ Event.prototype = {
                     eventClick: function(event) {
                         // opens events in a popup window
                         //window.open(event.url, 'gcalevent', 'width=700,height=600');
+                        console.log(event);
+                        
+                        var schedDetailsDom = document.getElementById("schedule-details");
+                        var titleDom = document.getElementById("schedule-title");
+                        var locationDom = document.getElementById("schedule-location");
+                        var descriptionDom = document.getElementById("schedule-description");
+                        
+                        titleDom.textContent = event.title;
+                        locationDom.textContent = event.location;
+                        descriptionDom.textContent = event.description;
+                        
+                        ui.showDetails(schedDetailsDom);
+                        
                         return false;
                     },
                     loading: function(bool) {
@@ -114,6 +135,14 @@ Event.prototype = {
                     }
                 };
                 $('#calendar').fullCalendar(calendar);
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 //ui.showSchedule();
             }
