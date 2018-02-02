@@ -53,32 +53,10 @@ Event.prototype = {
         thisEvent = this;
         this.divisions = new Object();
         this.doc.get().then(this.on_event_first_loaded);
-        
-        this.notifications = new Notifications(messaging);
-        
-/*
-            if(this.event_id) {
-                this.doc = this.event_collection.doc(this.event_id);
-                this.doc.get()
-                    .then(this.on_event_first_loaded)
-                    .catch(function(error) {
-                    console.log("Error getting document:", error);
-                });
-                
-                this.event_collection.doc(this.event_id)
-                    .onSnapshot(this.on_event_change);
-                
-            } else {
-                var table = document.getElementById("events_table");
-                this.db.collection("events").get().then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        console.log(`${doc.id} => ${doc.data().name}`);
-                        var row = table.insertRow();
-                        row.insertCell().innerHTML = doc.data().name;
-                    });
-                });
-            }*/
-        
+        this.doc.onSnapshot(function(doc) {
+                thisEvent.onChange(doc);
+        });
+        this.notifications = new Notifications(messaging);       
     },
     
     on_event_first_loaded: function(doc) {
@@ -88,9 +66,10 @@ Event.prototype = {
             console.log("Document data:", doc.data());
             //event.event_collection.doc(this.event_id)
             //        .onSnapshot(this.on_event_change);
-            var data = doc.data();
             
-            document.getElementById("event_name").innerHTML = data.name;
+            thisEvent.eventData = doc.data();
+            
+            document.getElementById("event_name").innerHTML = thisEvent.eventData.name;
             
             var divCollection = thisEvent.doc.collection("divisions");
             
@@ -98,7 +77,11 @@ Event.prototype = {
                divSnapshot.forEach(thisEvent.create_division); 
             });
             
-            if(data.hasOwnProperty("schedule")) {
+            if(thisEvent.eventData.hasOwnProperty("awards")) {
+                thisEvent.awards = new Awards(thisEvent.eventData.awards);
+            }
+            
+            if(thisEvent.eventData.hasOwnProperty("schedule")) {
                 var calendar = {
                     header: {
                         left: '',
@@ -108,14 +91,14 @@ Event.prototype = {
                     schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                     defaultView: 'listDay',
                     //defaultView: 'agendaDay',
-                    defaultDate: data.date,
+                    defaultDate: thisEvent.eventData.date,
                     displayEventTime: true, // don't show the time column in list view
                     // THIS KEY WON'T WORK IN PRODUCTION!!!
                     // To make your own Google API key, follow the directions here:
                     // http://fullcalendar.io/docs/google_calendar/
                     googleCalendarApiKey: 'AIzaSyB2C70d4KMWIFnL2v3f8fB41gfIyacZLVk',
                     // US Holidays
-                    events: data.schedule,
+                    events: thisEvent.eventData.schedule,
                     eventClick: function(event) {
                         // opens events in a popup window
                         //window.open(event.url, 'gcalevent', 'width=700,height=600');
@@ -130,55 +113,34 @@ Event.prototype = {
                 //ui.showSchedule();
             }
             
-            if(data.hasOwnProperty("info")) {
+            if(thisEvent.eventData.hasOwnProperty("info")) {
                 var info = document.getElementById("event-info-area");
-                info.innerHTML = data.info;
+                info.innerHTML = thisEvent.eventData.info;
             }
             
-            console.log(data);
+            console.log(this.eventData);
             console.log(divCollection);
             
-            
-            
-            
-            
-            
-            
-            /*if(data.multi_division) {
-                console.log("div0");
-                data.divisions[0].get().then(function(doc) {
-                    if(doc.exists) {
-                        console.log("Document data: ", doc.data());
-                        console.log("div0");
-                        document.getElementById("division-1").innerHTML = doc.data().name;
-                    } else {
-                        console.log("No such document!");
-                    }
-                });
-                
-                console.log("div1");
-                data.divisions[1].get().then(function(doc) {
-                    if(doc.exists) {
-                        console.log("Document data: ", doc.data());
-                        console.log("div1");
-                        document.getElementById("division-2").innerHTML = doc.data().name;
-                    } else {
-                        console.log("No such document!");
-                    }
-                });
-                //document.getElementById("divisions").style.visibility = "visible";
-            } else {
-                
-            }*/
             
         } else {
             console.log("No such document!");
         }
     },
     
-    on_event_change: function(doc) {
+    onChange: function(doc) {
         console.log("on_event_change function");
         //console.log(event);
+        if(doc) {
+            thisEvent.eventData = doc.data();
+        }
+    
+        if(thisEvent.eventData.hasOwnProperty("awards")) {
+            if(thisEvent.hasOwnProperty("awards")) {
+                thisEvent.awards.onChange(thisEvent.eventData.awards);
+            } else {
+                thisEvent.awards = new Awards(thisEvent.eventData.awards);
+            }
+        }
         console.log("Current data: ", doc && doc.data());
     },
 
@@ -190,10 +152,25 @@ Event.prototype = {
         var div_name = doc.data().name;
         ui.addDivision(div_name);
         thisEvent.divisions[div_name] = new Division(doc.ref, doc);
+        thisEvent.onChange(null); // force an event change to update the UI
     },
     
     topButtonClicked: function(button) {
         console.log(button);
+    },
+    
+    getTeamName: function(teamNumber) {
+        for (var key in this.divisions) {
+            // skip loop if the property is from prototype
+            if (!this.divisions.hasOwnProperty(key)) continue;
+
+            var div = this.divisions[key];
+            var name = div.teamList.getTeamName(teamNumber);
+            if (name.length > 0) {
+                return name;
+            }
+        }
+        return "";
     }
 };
 

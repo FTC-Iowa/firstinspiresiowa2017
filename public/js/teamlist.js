@@ -75,6 +75,7 @@ TeamList.prototype = {
     },
     
     getTeamName: function(number) {
+        console.log("Looking for team #", number);
         for(var i=0, len=this.data.length; i<len; i++){
             if(this.data[i].number === number) {
                 return this.data[i].name;

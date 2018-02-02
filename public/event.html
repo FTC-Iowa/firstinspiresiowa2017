@@ -92,7 +92,7 @@
                 <tr id="event-buttons">
                     <td><a href="#" id="btn-information" class="selected second-row" onclick="ui.onBtnClick('information')">Information</a></td>
                     <td id="td-schedule" class=""><a href="#" id="btn-schedule" class="second-row" onclick="ui.onBtnClick('schedule')">Schedule</a></td>
-                    <td id="td-awards" class=""><a href="#" id="btn-awards" class="second-row" onclick="ui.onBtnClick('awards')">Awards</a></td>
+                    <td id="td-awards" class="hidden"><a href="#" id="btn-awards" class="second-row" onclick="ui.onBtnClick('awards')">Awards</a></td>
                 </tr>
             </table>
             <table id="nav-scores" class="hidden">
@@ -139,9 +139,16 @@
         </article>
         
         <article id="event-awards" class="awards hidden">
-            <center>
+            <center id="award-list">
                 
-                <div>
+                <div id="award-placeholder">
+                    <h2>
+                        Awards Not Available
+                    </h2>
+                    Awards will be posed at the conclusion of the closing ceremony.
+                </div>
+                
+                <div id="award-inspire" class="hidden">
                     <h2>
                         Inspire Award
                     </h2>
@@ -149,25 +156,25 @@
                         <dt>
                             1st:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-inspire-1">
+                            
                         </dd>
                         <dt>
                             2nd:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-inspire-2">
+                            
                         </dd>
                         <dt>
                             3rd:
                         </dt>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-inspire-3">
+                            
                         </dd>
                     </dl>
                 </div>
                 
-                <div>
+                <div id="award-think" class="hidden">
                     <h2>
                         Think Award
                     </h2>
@@ -175,23 +182,20 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-think-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-think-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-think-3">
                         </dd>
                     </dl>
                 </div>
                 
                 
-                <div>
+                <div id="award-connect" class="hidden">
                     <h2>
                         Connect Award
                     </h2>
@@ -199,23 +203,20 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-connect-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-connect-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-connect-3">
                         </dd>
                     </dl>
                 </div>    
                 
                 
-                <div>
+                <div id="award-innovate" class="hidden">
                     <h2>
                         Rockwell Collins Innovate Award
                     </h2>
@@ -223,24 +224,21 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-innovate-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-innovate-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-innovate-3">
                         </dd>
                     </dl>
                 </div>   
                 
                 
                 
-                <div>
+                <div id="award-design" class="hidden">
                     <h2>
                         Design Award
                     </h2>
@@ -248,23 +246,20 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-design-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-design-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-design-3">
                         </dd>
                     </dl>
                 </div> 
                 
                 
-                <div>
+                <div id="award-motivate" class="hidden">
                     <h2>
                         Motivate Award
                     </h2>
@@ -272,23 +267,20 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-motivate-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-motivate-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-motivate-3">
                         </dd>
                     </dl>
                 </div> 
                 
                 
-                <div>
+                <div id="award-control" class="hidden">
                     <h2>
                         Control Award
                     </h2>
@@ -296,23 +288,20 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-control-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-control-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-control-3">
                         </dd>
                     </dl>
                 </div> 
                 
                 
-                <div>
+                <div id="award-promote" class="hidden">
                     <h2>
                         Promote Award
                     </h2>
@@ -320,23 +309,20 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
+                        <dd id="award-promote-1">
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
+                        <dd id="award-promote-2">
                         </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-promote-3">
                         </dd>
                     </dl>
                 </div> 
                 
                 
-                <div>
+                <div id="award-compass" class="hidden">
                     <h2>
                         Compass Award
                     </h2>
@@ -344,41 +330,27 @@
                         <dt>
                             Winner:
                         </dt>
-                        <dd>
-                            1234 - Some Long Name
-                        </dd>
-                        <dt>
-                            Finalists:
-                        </dt>
-                        <dd>
-                            2345 - Some other even longer name because...
-                        </dd>
-                        <dd>
-                            3456 - And some short name
+                        <dd id="award-compass-1">
                         </dd>
                     </dl>
                 </div> 
                 
                 
-                <div>
+                <div id="award-judges" class="hidden">
                     <h2>
-                        Judges Award
                     </h2>
                     <dl>
                         <dt>
                             Winner:
                         </dt>
                         <dd>
-                            1234 - Some Long Name
                         </dd>
                         <dt>
                             Finalists:
                         </dt>
                         <dd>
-                            2345 - Some other even longer name because...
                         </dd>
                         <dd>
-                            3456 - And some short name
                         </dd>
                     </dl>
                 </div> 
@@ -597,6 +569,7 @@
     <script src="/js/rankings.js?0.0.4"></script>
     <script src="/js/division.js?0.0.4" type="text/javascript"></script>
     <script src="/js/notification.js?0.0.4" type="text/javascript"></script>
+    <script src="/js/awards.js?0.0.4" type="text/javascript"></script>
     <script src="/js/event.js?0.0.4" type="text/javascript"></script>
     <script src="/js/SearchHighlight.pack.js" type="text/javascript"></script>
 </body>
