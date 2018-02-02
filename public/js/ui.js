@@ -141,6 +141,11 @@ Ui.prototype = {
         this.unhide(e);
     },
     
+    showTwitter: function() {
+        var e = document.getElementById("td-twitter");
+        this.unhide(e);
+    },
+    
     hide: function(element) {
        element.className += ' hidden'; 
     },

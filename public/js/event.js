@@ -81,6 +81,11 @@ Event.prototype = {
                 thisEvent.awards = new Awards(thisEvent.eventData.awards);
             }
             
+            
+            if(thisEvent.eventData.hasOwnProperty("twitter")) {
+                ui.showTwitter();
+            }
+            
             if(thisEvent.eventData.hasOwnProperty("schedule")) {
                 var calendar = {
                     header: {
@@ -140,6 +145,10 @@ Event.prototype = {
             } else {
                 thisEvent.awards = new Awards(thisEvent.eventData.awards);
             }
+        }
+        
+        if(thisEvent.eventData.hasOwnProperty("twitter")) {
+            ui.showTwitter();
         }
         console.log("Current data: ", doc && doc.data());
     },

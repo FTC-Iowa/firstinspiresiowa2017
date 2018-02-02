@@ -90,9 +90,10 @@
             </table>
             <table id="nav-event">
                 <tr id="event-buttons">
-                    <td><a href="#" id="btn-information" class="selected second-row" onclick="ui.onBtnClick('information')">Information</a></td>
+                    <td><a href="#" id="btn-information" class="selected second-row" onclick="ui.onBtnClick('information')">Info</a></td>
                     <td id="td-schedule" class=""><a href="#" id="btn-schedule" class="second-row" onclick="ui.onBtnClick('schedule')">Schedule</a></td>
                     <td id="td-awards" class="hidden"><a href="#" id="btn-awards" class="second-row" onclick="ui.onBtnClick('awards')">Awards</a></td>
+                    <td id="td-twitter" class="hidden"><a href="#" id="btn-twitter" class="second-row" onclick="ui.onBtnClick('twitter')">Twitter</a></td>
                 </tr>
             </table>
             <table id="nav-scores" class="hidden">
@@ -136,6 +137,12 @@
         
         <article id="event-schedule" class="schedule hidden">
             <div id="calendar"></div>
+        </article>
+        
+        <article id="event-twitter" class="twitter hidden">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/omgrobots" data-widget-id="959475738645815296">#omgrobots Tweets</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          
         </article>
         
         <article id="event-awards" class="awards hidden">
@@ -563,14 +570,14 @@
     
     
     
-    <script src="/js/ui.js?0.0.4" type="text/javascript"></script>
-    <script src="/js/teamlist.js?0.0.4"></script>
-    <script src="/js/matchlist.js?0.0.4"></script>
-    <script src="/js/rankings.js?0.0.4"></script>
-    <script src="/js/division.js?0.0.4" type="text/javascript"></script>
-    <script src="/js/notification.js?0.0.4" type="text/javascript"></script>
-    <script src="/js/awards.js?0.0.4" type="text/javascript"></script>
-    <script src="/js/event.js?0.0.4" type="text/javascript"></script>
+    <script src="/js/ui.js?0.1.0" type="text/javascript"></script>
+    <script src="/js/teamlist.js?0.1.0"></script>
+    <script src="/js/matchlist.js?0.1.0"></script>
+    <script src="/js/rankings.js?0.1.0"></script>
+    <script src="/js/division.js?0.1.0" type="text/javascript"></script>
+    <script src="/js/notification.js?0.1.0" type="text/javascript"></script>
+    <script src="/js/awards.js?0.1.0" type="text/javascript"></script>
+    <script src="/js/event.js?0.1.0" type="text/javascript"></script>
     <script src="/js/SearchHighlight.pack.js" type="text/javascript"></script>
 </body>
 </html>
