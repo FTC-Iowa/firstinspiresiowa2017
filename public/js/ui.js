@@ -24,6 +24,8 @@ Ui.prototype = {
         this.detailsBox = document.getElementById("detail-box");
         this.templates = document.getElementById("templates");
         this.detailsBack.setAttribute("onclick", "ui.hideDetails()");
+        
+        this.onResize();
     },
     
     onBtnClick: function(name) {
@@ -182,7 +184,33 @@ Ui.prototype = {
             this.unhide(checks[i]);
             console.log("showing check", i);
         }
+    },
+    
+    onResize: function() {
+        console.log("Resize Event");
+        var header = document.getElementById("header");
+        var footer = document.getElementById("footer");
+        var content = document.getElementById("content");
+        var twitter = document.getElementById("event-twitter");
+        var twitterContainer = document.getElementById("twitter-container");
+        var twitterWidget = document.getElementById("twitter-widget-0");
+        var vp = window.innerHeight;
+        var size = header.offsetHeight + footer.offsetHeight;
+        var height = vp - size - 20;
+        content.setAttribute("style", "min-height:"+height+"px;");
+        twitter.setAttribute("style", "height:"+height+"px;");
+        if(twitterContainer) {
+            twitterContainer.setAttribute("data-height", height);
+        }
+        if(twitterWidget) {
+            var style = twitterWidget.getAttribute("style");
+            style += "height:" + height+"px;";
+            
+            twitterWidget.setAttribute("style", style);
+        }
     }
 };
 
 ui = new Ui();
+
+window.addEventListener('resize', ui.onResize, true);

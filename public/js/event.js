@@ -83,6 +83,9 @@ Event.prototype = {
             
             
             if(thisEvent.eventData.hasOwnProperty("twitter")) {
+                var twitter = document.getElementById("twitter-container");
+                //twitter.setAttribute("data-widget-id", thisEvent.eventData.twitter);
+                twitterInit(document,"script","twitter-wjs");
                 ui.showTwitter();
             }
             
