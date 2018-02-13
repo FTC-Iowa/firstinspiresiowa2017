@@ -391,3 +391,7 @@ table td {
     outline-width: 2px;
     max-width: 500px;
 }
+
+.pannable-image {
+	max-width: 400px;
+}

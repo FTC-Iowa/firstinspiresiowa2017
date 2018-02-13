@@ -158,7 +158,11 @@ Event.prototype = {
                     $('#calendar').fullCalendar(calendar);
                 }
                 
-                
+                //var mapcontainer = document.getElementById("map-container");
+				//var viewer = ImageV
+				
+				$('.pannable-image').ImageViewer({snapView: false});
+				
                 //ui.showSchedule();
             }
             
