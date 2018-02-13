@@ -37,9 +37,9 @@ Awards.prototype = {
         
         if (awards.length > 0) {
             this.parseAwards(awards);
+			ui.setAwardsVisible(true);
         }
         
-        ui.setAwardsVisible(true);
     },
     
     onChange: function(awards) {
