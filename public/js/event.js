@@ -87,33 +87,74 @@ Event.prototype = {
             }
             
             if(thisEvent.eventData.hasOwnProperty("schedule")) {
-                var calendar = {
-                    header: {
-                        left: '',
-                        center: '',
-                        right: ''
-                    },
-                    schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-                    defaultView: 'listDay',
-                    //defaultView: 'agendaDay',
-                    defaultDate: thisEvent.eventData.date,
-                    displayEventTime: true, // don't show the time column in list view
-                    // THIS KEY WON'T WORK IN PRODUCTION!!!
-                    // To make your own Google API key, follow the directions here:
-                    // http://fullcalendar.io/docs/google_calendar/
-                    googleCalendarApiKey: 'AIzaSyB2C70d4KMWIFnL2v3f8fB41gfIyacZLVk',
-                    // US Holidays
-                    events: thisEvent.eventData.schedule,
-                    eventClick: function(event) {
-                        // opens events in a popup window
-                        //window.open(event.url, 'gcalevent', 'width=700,height=600');
-                        return false;
-                    },
-                    loading: function(bool) {
-                        console.log("loading...");
+                if(Array.isArray(thisEvent.eventData.date)) {
+                    var num = thisEvent.eventData.date.length;
+                    var i;
+                    var article = document.getElementById("event-schedule");
+                    for(i=0;i<num;i++) {
+                        var caldom = document.createElement("div");
+                        caldom.setAttribute("id", "calendar-"+i);
+                        article.appendChild(caldom);
+                        
+                        var calendar = {
+                            header: {
+                                left: '',
+                                center: '',
+                                right: ''
+                            },
+                            schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+                            defaultView: 'listDay',
+                            //defaultView: 'agendaDay',
+                            defaultDate: thisEvent.eventData.date[i],
+                            displayEventTime: true, // don't show the time column in list view
+                            // THIS KEY WON'T WORK IN PRODUCTION!!!
+                            // To make your own Google API key, follow the directions here:
+                            // http://fullcalendar.io/docs/google_calendar/
+                            googleCalendarApiKey: 'AIzaSyB2C70d4KMWIFnL2v3f8fB41gfIyacZLVk',
+                            // US Holidays
+                            events: thisEvent.eventData.schedule,
+                            eventClick: function(event) {
+                                // opens events in a popup window
+                                //window.open(event.url, 'gcalevent', 'width=700,height=600');
+                                return false;
+                            },
+                            loading: function(bool) {
+                                console.log("loading...");
+                            }
+                        };
+                        $('#calendar-' + i).fullCalendar(calendar);
                     }
-                };
-                $('#calendar').fullCalendar(calendar);
+                    
+                } else {
+                    var calendar = {
+                        header: {
+                            left: '',
+                            center: '',
+                            right: ''
+                        },
+                        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+                        defaultView: 'listDay',
+                        //defaultView: 'agendaDay',
+                        defaultDate: thisEvent.eventData.date,
+                        displayEventTime: true, // don't show the time column in list view
+                        // THIS KEY WON'T WORK IN PRODUCTION!!!
+                        // To make your own Google API key, follow the directions here:
+                        // http://fullcalendar.io/docs/google_calendar/
+                        googleCalendarApiKey: 'AIzaSyB2C70d4KMWIFnL2v3f8fB41gfIyacZLVk',
+                        // US Holidays
+                        events: thisEvent.eventData.schedule,
+                        eventClick: function(event) {
+                            // opens events in a popup window
+                            //window.open(event.url, 'gcalevent', 'width=700,height=600');
+                            return false;
+                        },
+                        loading: function(bool) {
+                            console.log("loading...");
+                        }
+                    };
+                    $('#calendar').fullCalendar(calendar);
+                }
+                
                 
                 //ui.showSchedule();
             }
