@@ -395,3 +395,7 @@ table td {
 .pannable-image {
 	max-width: 400px;
 }
+
+#event-info-area img {
+    border: none;
+}

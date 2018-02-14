@@ -25,7 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
         var url_path = window.location.pathname;
         //event_id = url_path.split("/")[2];
         //console.log("Event_ID = " + this.event_id);
-		event_id = "ia";
+        var h = window.location.href.split("#")[1];
+        if(h === "test") {
+            event_id = "test";
+        } else {
+            event_id = "ia";
+        }
         //this.event_collection = this.db.collection("events");
 
     } catch (e) {
@@ -161,8 +166,14 @@ Event.prototype = {
                 //var mapcontainer = document.getElementById("map-container");
 				//var viewer = ImageV
 				
-				$('.pannable-image').ImageViewer({snapView: false});
-				
+                //$('.pannable-image').ImageViewer({snapView: false});
+		
+                thisEvent.maps = new Maps();
+                
+                //viewer = ImageViewer('.', {snapView: false});
+                
+                //console.log(viewer);
+                
                 //ui.showSchedule();
             }
             

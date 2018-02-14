@@ -172,3 +172,33 @@ exports.subscribe = functions.https.onRequest((req, res) => {
         res.status(400).send("Invalid request");
     }
 });
+
+
+exports.twitter = functions.https.onRequest((req1, res1) => {
+    
+    var http = require("http");
+
+    var options = {
+        host: "walls.io",
+        port: 80,
+        path: "/fgkbw"
+    };
+
+    var content = "";   
+
+    var req = http.request(options, function(res) {
+        res.setEncoding("utf8");
+        res.on("data", function (chunk) {
+            content += chunk;
+        });
+
+        res.on("end", function () {
+            res1.status(200).send(content);
+        });
+    });
+
+    req.end();
+    
+    
+    
+});

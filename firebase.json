@@ -18,6 +18,10 @@
         {
             "source": "/subscribe",
             "function": "subscribe"
+        },
+        {
+            "source": "/twitter",
+            "function": "twitter"
         }
     ]
   },
