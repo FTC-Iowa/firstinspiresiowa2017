@@ -45,5 +45,11 @@ Division.prototype = {
     
     updateInspections: function(inspections) {
         this.teamList.onUpdate(this.data.teams, inspections[this.name]);
+    },
+
+   searchTeam: function(team) {
+        this.teamList.searchTeam(team);
+    //    this.matchList.searchTeam(team);
+    //    this.rankings.searchTeam(team);
     }
 };

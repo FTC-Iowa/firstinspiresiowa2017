@@ -75,7 +75,7 @@ Event.prototype = {
             
             thisEvent.eventData = doc.data();
             
-            document.getElementById("event_name").innerHTML = thisEvent.eventData.name;
+            //document.getElementById("event_name").innerHTML = thisEvent.eventData.name;
             
             var divCollection = thisEvent.doc.collection("divisions");
             
@@ -255,6 +255,20 @@ Event.prototype = {
             }
         }
         return "";
+    },
+    
+    searchTeam: function(team) {
+//        thisEvent.divisions.forEach(function (d) {
+//            d.searchTeam(team);
+//        });
+        
+        
+        for (var key in thisEvent.divisions) {
+            // skip loop if the property is from prototype
+            if (!thisEvent.divisions.hasOwnProperty(key)) continue;
+
+            thisEvent.divisions[key].searchTeam(team);
+        }
     }
 };
 

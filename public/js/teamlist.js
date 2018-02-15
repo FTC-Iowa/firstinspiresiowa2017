@@ -16,6 +16,7 @@ TeamList.prototype = {
         console.log("inspections", inspections);
         this.inspections = inspections;
         
+        this.search = 0;
         this.div = div;
         this.data = teamArray;
         this.domList = document.getElementById("teamlist").cloneNode(true);
@@ -38,6 +39,7 @@ TeamList.prototype = {
     },
     
     onUpdate: function(teams, inspections) {
+        this.teams = teams;
         this.inspections = inspections;
         for (var i = 0, len = teams.length; i < len; i++) {
             this.updateRow(teams[i]);
@@ -55,6 +57,8 @@ TeamList.prototype = {
             
             for(var i=0;i<2;i++) {
                 var cell = document.createElement("td");
+                var span = document.createElement("span");
+                cell.appendChild(span);
                 row.appendChild(cell);
             }
             
@@ -76,12 +80,18 @@ TeamList.prototype = {
             this.ListTbody.appendChild(row);
         }
         
-        cells = row.getElementsByTagName("td");
+        cells = row.getElementsByTagName("span");
         
         cells[0].textContent = team.number;
         cells[1].textContent = team.name;
         
         this.updateInspectionRow(team.number);
+
+        if (team.number === this.search) {
+            row.setAttribute("class","highlight");
+        } else {
+            row.setAttribute("class", "");
+        }
     },
     
     updateInspectionRow: function(teamNumber) {
@@ -93,33 +103,47 @@ TeamList.prototype = {
             row.setAttribute("id", this.div.name + "-inspection-" + teamNumber);
             for(var i=0; i<5; i++) {
                 var cell = document.createElement("td");
+                var span = document.createElement("span");
+                cell.appendChild(span);
                 row.appendChild(cell);
             }
             this.InspectTbody.appendChild(row);
         }
         
         cells = row.getElementsByTagName("td");
+        spans = row.getElementsByTagName("span");
         var inspection = this.inspections["_" + teamNumber];
-        console.log("number: "+teamNumber+" == "+ inspection);
-        cells[0].textContent = teamNumber;
-        cells[1].textContent = inspection.hw.start;
+        //console.log("number: "+teamNumber+" == "+ inspection);
+        spans[0].textContent = teamNumber;
+        spans[1].textContent = inspection.hw.start;
         cells[1].className = "state" + inspection.hw.state;
-        cells[2].textContent = inspection.field.start;
+        spans[2].textContent = inspection.field.start;
         cells[2].className = "state" + inspection.field.state;
-        cells[3].textContent = inspection.judge.start;
+        spans[3].textContent = inspection.judge.start;
         cells[3].className = "state" + inspection.judge.state;
-        cells[4].textContent = inspection.picture.start;
+        spans[4].textContent = inspection.picture.start;
         cells[4].className = "state" + inspection.picture.state;
         
+	if (teamNumber === this.search) {
+            row.setAttribute("class","highlight");
+        } else {
+            row.setAttribute("class", "");
+        }
+
     },
     
     getTeamName: function(number) {
-        console.log("Looking for team #", number);
+        //console.log("Looking for team #", number);
         for(var i=0, len=this.data.length; i<len; i++){
             if(this.data[i].number === number) {
                 return this.data[i].name;
             }
         }
         return "";
+    },
+    
+    searchTeam: function(team) {
+        this.search = team;
+        this.onUpdate(this.teams, this.inspections);
     }
 };

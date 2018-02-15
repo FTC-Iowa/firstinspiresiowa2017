@@ -208,6 +208,12 @@ Ui.prototype = {
             
             twitterWidget.setAttribute("style", style);
         }
+    },
+    
+    onSearchClick: function() {
+        var team = document.getElementById("team-search-input").value;
+        console.log("Search clicked with query", team);
+        thisEvent.searchTeam(Number(team));
     }
 };
 

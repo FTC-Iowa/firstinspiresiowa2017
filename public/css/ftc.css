@@ -80,20 +80,7 @@ main {
 }
 
 
-footer {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    padding: 0px;
-    height: 30px;
-    width: 100%;
-    z-index: 50;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    display:table;
-}
+
 
 #event_name {
     display:table-cell;
@@ -200,7 +187,7 @@ table td {
 
 
 
-.teams td {
+.teams tbody tr {
     background-color: var(--gray-color);
 }
 
@@ -441,4 +428,76 @@ States:
 
 #event-info-area img {
     border: none;
+}
+
+#team-search {
+    display: inline-flex;
+}
+
+#team-search-input {
+    border-top: thin solid #e5e5e5;
+    border-right: thin solid #e5e5e5;
+    border-bottom: 0;
+    border-left: thin solid #e5e5e5;
+    box-shadow: 0px 1px 1px 1px #e5e5e5;
+    height: 17px;
+    outline: 0;
+    padding: 5px;
+    width: 100px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 30px;
+    width: 100%;
+    z-index: 50;
+    text-align: center;
+    display:table;
+}
+
+footer img {
+    height: 27px;
+    float: left;
+    padding-left: 10px;
+}
+
+#footer-content {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+}
+
+#team-search {
+    float: right;
+    height: 27px;
+    padding-right:10px;
+}
+
+#button-holder {
+    background-color: #f1f1f1;
+    border-top: thin solid #e5e5e5;
+    box-shadow: 1px 1px 1px 1px #e5e5e5;
+    cursor: pointer;
+    height: 27px;
+    /*margin: 11px 0 0 0;*/
+    text-align: center;
+    width: 50px;
+}
+
+.search-teamlist {
+    background-color: #00a651;
+}
+
+
+.highlight span {
+    background-color: yellow;
+    padding-left: 5px;
+    padding-right: 5px;
 }
