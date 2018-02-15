@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             event_id = "ia";
         }
+        //event_id = "test";
         //this.event_collection = this.db.collection("events");
 
     } catch (e) {
@@ -81,6 +82,10 @@ Event.prototype = {
             divCollection.get().then(function(divSnapshot) {
                divSnapshot.forEach(thisEvent.create_division); 
             });
+            
+            if(thisEvent.eventData.hasOwnProperty("phase")) {
+                ui.setPhase(thisEvent.eventData.phase);
+            }
             
             if(thisEvent.eventData.hasOwnProperty("awards")) {
                 thisEvent.awards = new Awards(thisEvent.eventData.awards);
@@ -179,7 +184,7 @@ Event.prototype = {
             
             if(thisEvent.eventData.hasOwnProperty("info")) {
                 var info = document.getElementById("event-info-area");
-                info.innerHTML = thisEvent.eventData.info;
+                //info.innerHTML = thisEvent.eventData.info;
             }
             
             console.log(this.eventData);
@@ -197,7 +202,18 @@ Event.prototype = {
         if(doc) {
             thisEvent.eventData = doc.data();
         }
-    
+        
+        if(thisEvent.eventData.hasOwnProperty("phase")) {
+            ui.setPhase(thisEvent.eventData.phase);
+        }
+        
+        if(thisEvent.hasOwnProperty("divisions")) {
+            if(thisEvent.divisions.hasOwnProperty("black"))
+                thisEvent.divisions.black.updateInspections(thisEvent.eventData.inspections);
+            if(thisEvent.divisions.hasOwnProperty("gold"))
+                thisEvent.divisions.gold.updateInspections(thisEvent.eventData.inspections);
+        }
+        
         if(thisEvent.eventData.hasOwnProperty("awards")) {
             if(thisEvent.hasOwnProperty("awards")) {
                 thisEvent.awards.onChange(thisEvent.eventData.awards);

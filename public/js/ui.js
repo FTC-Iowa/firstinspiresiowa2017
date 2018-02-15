@@ -101,7 +101,7 @@ Ui.prototype = {
         var rankings = document.getElementById("td-rankings");
         if(phase === "morning") {
             inspection.className = "";
-            judging.className = "";
+            judging.className = "hidden";
             matches.className = "hidden";
             results.className = "hidden";
             rankings.className = "hidden";

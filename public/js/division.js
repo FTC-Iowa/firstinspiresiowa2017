@@ -18,13 +18,13 @@ Division.prototype = {
         this.firstload = true;
         this.document = doc_ref;
         console.log("div = " + doc_snap.data().name);
-        var data = doc_snap.data();
-        this.name = data.name;
-        this.teamList = new TeamList(this, data.teams);
-        this.matchList = new MatchList(this, data.matches);
-        this.rankings = new Rankings(this, data.rankings, this.teamList);
+        this.data = doc_snap.data();
+        this.name = this.data.name;
+        this.teamList = new TeamList(this, this.data.teams, thisEvent.eventData.inspections[this.name]);
+        this.matchList = new MatchList(this, this.data.matches);
+        this.rankings = new Rankings(this, this.data.rankings, this.teamList);
         
-        divisions[data.name] = this;
+        divisions[this.data.name] = this;
         
         doc_ref.onSnapshot(function(doc) {
             divisions[doc.data().name].onChange(doc);
@@ -37,9 +37,13 @@ Division.prototype = {
             this.firstload = false;
             //return;
         }
-        var data = doc_snap.data();
-        this.teamList.onUpdate(data.teams);
-        this.matchList.onUpdate(data.matches);
-        this.rankings.onUpdate(data.rankings);
+        this.data = doc_snap.data();
+        this.teamList.onUpdate(this.data.teams, thisEvent.eventData.inspections[this.name]);
+        this.matchList.onUpdate(this.data.matches);
+        this.rankings.onUpdate(this.data.rankings);
+    },
+    
+    updateInspections: function(inspections) {
+        this.teamList.onUpdate(this.data.teams, inspections[this.name]);
     }
 };

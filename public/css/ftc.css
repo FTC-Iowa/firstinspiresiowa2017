@@ -208,6 +208,49 @@ table td {
     filter: brightness(70%);
 }
 
+
+.inspections td {
+    background-color: var(--gray-color);
+}
+
+.inspections table tr:nth-child(even) {
+    filter: brightness(80%);
+}
+
+/* 
+States:
+0: not started
+1: in progress
+2: rework
+3: pass
+4: fail
+5: late
+*/
+.inspections .state0 {
+}
+
+.inspections .state1 {
+    background-color: yellow;
+}
+
+.inspections .state2 {
+    background-color: orange;
+}
+
+.inspections .state3 {
+    background-color: green;
+}
+
+.inspections .state4 {
+    background-color: red;
+}
+
+.inspections .state5 {
+    background-color: pink;
+}
+
+
+
 #templates {
     display:none;
 }

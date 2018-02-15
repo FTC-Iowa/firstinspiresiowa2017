@@ -8,78 +8,89 @@ admin.initializeApp (functions.config().firebase);
 const firestore = new Firestore(functions.config().firebase);
 
 
-function updateTeam(team) {
-    var eventId = this.eventId;
-    console.log("team update");
-    var eventDocName = "events/" + this.eventId;
-    var divisionDocName = eventDocName + "/divisions/" + this.divisionId;
-    var doc = firestore.collection(divisionDocName);
-    
-}
-
-function updateMatches(match) {
-    console.log("match update");
-}
-
-function updateRankings(ranking) {
-    
-}
+//function updateTeam(team) {
+//    var eventId = this.eventId;
+//    console.log("team update");
+//    var eventDocName = "events/" + this.eventId;
+//    var divisionDocName = eventDocName + "/divisions/" + this.divisionId;
+//    var doc = firestore.collection(divisionDocName);
+//    
+//}
+//
+//function updateMatches(match) {
+//    console.log("match update");
+//}
+//
+//function updateRankings(ranking) {
+//    
+//}
  
-function parseUpdate(update) {
-    var eventId = this.eventId;
-    var divisionId = this.divisionId;
-    console.log("update");
-    if (update === null) {
-        console.log("update == null");
-        return;
-    }
-    if( update.teams ) {
-        update.teams.forEach ( updateTeam );
-    }
-    if( update.matches ) {
-        update.matches.forEach ( updateMatches );
-    }
-    if( update.rankings ) {
-        update.rankings.forEach ( updateRankings );
-    }
-}
+//function parseUpdate(update) {
+//    var eventId = this.eventId;
+//    var divisionId = this.divisionId;
+//    console.log("update");
+//    if (update === null) {
+//        console.log("update == null");
+//        return;
+//    }
+//    if( update.teams ) {
+//        update.teams.forEach ( updateTeam );
+//    }
+//    if( update.matches ) {
+//        update.matches.forEach ( updateMatches );
+//    }
+//    if( update.rankings ) {
+//        update.rankings.forEach ( updateRankings );
+//    }
+//}
 
 exports.update = functions.https.onRequest((req, res) => {
-	//var ret = "Teams: "
-	var data = req.body;
-        //var updates = data.updates;  // updates is an array of json objects
-        
-        console.log("got data");
-        //updates.forEach( parseUpdate, data ); // parse each update in the updates array
-        
-        if (data.passphrase !== "x") {
-            res.status(401).sent("Incorrect Passphrase");
-        }
-        
-        if ( data.data && data.eventId && data.divisionId ) {
-        
-            var event = data.eventId;
-            var division = data.divisionId;
+    var data = req.body;
 
-            var doc = firestore.collection("events").doc(event).collection("divisions").doc(division);
-            doc.set(data.data);
-            
-            if ( data.awards ) {
-                console.log("Saving Award Data!");
-                //var awarddoc = firestore.collection("events").doc(event).collection("awards").doc("awards");
-                var awards = {awards: data.awards};
-                var eventdoc = firestore.collection("events").doc(event);
-                eventdoc.set({awards: data.awards}, {merge: true});
-                
-                console.log("award: ", JSON.stringify(awards));
-                //awarddoc.set(awards);
-            }
-            
-            res.status(200).send("done!");
-        } else {
-            res.status(400).send("Invalid request");
+    if (data.passphrase !== "x") {
+        res.status(401).sent("Incorrect Passphrase");
+    }
+
+    if ( data.data && data.eventId && data.divisionId ) {
+
+        var event = data.eventId;
+        var division = data.divisionId;
+
+        var doc = firestore.collection("events").doc(event).collection("divisions").doc(division);
+        doc.set(data.data);
+
+        if ( data.awards ) {
+            console.log("Saving Award Data!");
+            var awards = {awards: data.awards};
+            var eventdoc = firestore.collection("events").doc(event);
+            eventdoc.set({awards: data.awards}, {merge: true});
+            console.log("award: ", JSON.stringify(awards));
         }
+
+        res.status(200).send("done!");
+    } else {
+        res.status(400).send("Invalid request");
+    }
 });
+
+exports.eventUpload = functions.https.onRequest((req, res) => {
+    var data = req.body;
+    
+    if ( data && data.passphrase && data.eventId ) {
+        var event = data.eventId;
+        var doc = firestore.collection("events").doc(event);
+        //if ( data.passphrase === doc.data().passphrase ) {
+            doc.set(data, {merge: true});
+            console.log("Applying patch to event:", JSON.stringify(data));
+            res.status(200).send("done!");
+        //} else {
+        //    res.status(401).sent("Incorrect Passphrase");            
+        //}
+    }
+});
+
+
+
 
 function getMatchName(match) {
     var name = "";
@@ -173,32 +184,3 @@ exports.subscribe = functions.https.onRequest((req, res) => {
     }
 });
 
-
-exports.twitter = functions.https.onRequest((req1, res1) => {
-    
-    var http = require("http");
-
-    var options = {
-        host: "walls.io",
-        port: 80,
-        path: "/fgkbw"
-    };
-
-    var content = "";   
-
-    var req = http.request(options, function(res) {
-        res.setEncoding("utf8");
-        res.on("data", function (chunk) {
-            content += chunk;
-        });
-
-        res.on("end", function () {
-            res1.status(200).send(content);
-        });
-    });
-
-    req.end();
-    
-    
-    
-});

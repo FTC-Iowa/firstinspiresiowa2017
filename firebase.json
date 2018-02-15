@@ -20,8 +20,8 @@
             "function": "subscribe"
         },
         {
-            "source": "/twitter",
-            "function": "twitter"
+            "source": "/eventUpload",
+            "function": "eventUpload"
         }
     ]
   },

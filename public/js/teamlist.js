@@ -5,31 +5,40 @@
  */
 
 
-var TeamList = function(div, teamArray) {
-    this.init(div, teamArray);
+var TeamList = function(div, teamArray, inspections) {
+    this.init(div, teamArray, inspections);
 };
 
 TeamList.prototype = {
     
-    init: function(div, teamArray) {
+    init: function(div, teamArray, inspections) {
         console.log("Init TeamList");
+        console.log("inspections", inspections);
+        this.inspections = inspections;
         
         this.div = div;
         this.data = teamArray;
-        this.dom = document.getElementById("teamlist").cloneNode(true);
+        this.domList = document.getElementById("teamlist").cloneNode(true);
         
-        this.dom.setAttribute("id", div.name + "-teams");
-        this.dom.setAttribute("class", "teams hidden");
-        this.tbody = this.dom.getElementsByTagName("tbody")[0];
+        this.domList.setAttribute("id", div.name + "-teams");
+        this.domList.setAttribute("class", "teams hidden");
+        this.ListTbody = this.domList.getElementsByTagName("tbody")[0];
+        
+        this.domInspect = document.getElementById("inspections").cloneNode(true);
+        this.domInspect.setAttribute("id", div.name + "-inspections");
+        this.domList.setAttribute("class", "inspections hidden");
+        this.InspectTbody = this.domInspect.getElementsByTagName("tbody")[0];
         
         for (var i = 0, len = teamArray.length; i < len; i++) {
             this.updateRow(teamArray[i]);
         }        
         
-        document.getElementById("content").appendChild(this.dom);
+        document.getElementById("content").appendChild(this.domList);
+        document.getElementById("content").appendChild(this.domInspect);
     },
     
-    onUpdate: function(teams) {
+    onUpdate: function(teams, inspections) {
+        this.inspections = inspections;
         for (var i = 0, len = teams.length; i < len; i++) {
             this.updateRow(teams[i]);
         }     
@@ -64,13 +73,43 @@ TeamList.prototype = {
             }
             cell3.appendChild(cell3_content);
             row.appendChild(cell3);
-            this.tbody.appendChild(row);
+            this.ListTbody.appendChild(row);
         }
         
         cells = row.getElementsByTagName("td");
         
         cells[0].textContent = team.number;
         cells[1].textContent = team.name;
+        
+        this.updateInspectionRow(team.number);
+    },
+    
+    updateInspectionRow: function(teamNumber) {
+        var row = document.getElementById(this.div.name + "-inspection-" + teamNumber);
+        if (row) {
+            
+        } else {
+            row = document.createElement("tr");
+            row.setAttribute("id", this.div.name + "-inspection-" + teamNumber);
+            for(var i=0; i<5; i++) {
+                var cell = document.createElement("td");
+                row.appendChild(cell);
+            }
+            this.InspectTbody.appendChild(row);
+        }
+        
+        cells = row.getElementsByTagName("td");
+        var inspection = this.inspections["_" + teamNumber];
+        console.log("number: "+teamNumber+" == "+ inspection);
+        cells[0].textContent = teamNumber;
+        cells[1].textContent = inspection.hw.start;
+        cells[1].className = "state" + inspection.hw.state;
+        cells[2].textContent = inspection.field.start;
+        cells[2].className = "state" + inspection.field.state;
+        cells[3].textContent = inspection.judge.start;
+        cells[3].className = "state" + inspection.judge.state;
+        cells[4].textContent = inspection.picture.start;
+        cells[4].className = "state" + inspection.picture.state;
         
     },
     
