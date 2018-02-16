@@ -24,10 +24,13 @@ Rankings.prototype = {
         console.log("Init Rankings");
         this.div = div;
         this.teams = teamList;
+        this.rankings = rankings;
         this.dom = document.getElementById("rankings").cloneNode(true);
         this.dom.setAttribute("id", div.name + "-rankings");
         this.dom.setAttribute("class", "rankings hidden");
         this.tbody = this.dom.getElementsByTagName("tbody")[0];
+        
+        this.search = 0;
         
         for(var i=0, len=rankings.length; i<len; i++) {
             this.updateRow(i, rankings[i]);
@@ -42,33 +45,12 @@ Rankings.prototype = {
     
     setupDetailsBox: function() {
         this.detailsBox = { 
-            dom: document.getElementById("rank-details"),
-           /* name: document.getElementById("match-details-name"),
-            score: document.getElementById("match-details-score"),
-            red: {
-                teams: document.getElementById("match-details-red-teams"),
-                total: document.getElementById("match-details-red-total"), 
-                auto: document.getElementById("match-details-red-auto"),
-                autobonus: document.getElementById("match-details-red-autobonus"),
-                teleop: document.getElementById("match-details-red-teleop"),
-                endg: document.getElementById("match-details-red-endg"),
-                penalties: document.getElementById("match-details-red-penalties")
-            },
-            blue: {
-                teams: document.getElementById("match-details-blue-teams"),
-                total: document.getElementById("match-details-blue-total"), 
-                auto: document.getElementById("match-details-blue-auto"),
-                autobonus: document.getElementById("match-details-blue-autobonus"),
-                teleop: document.getElementById("match-details-blue-teleop"),
-                endg: document.getElementById("match-details-blue-endg"),
-                penalties: document.getElementById("match-details-blue-penalties")
-            }
-            */
         };
         
     },
     
     onUpdate: function(rankings) {
+        this.rankings = rankings;
         for(var i=0, len=rankings.length; i<len; i++) {
             this.updateRow(i, rankings[i]);
         }
@@ -86,12 +68,16 @@ Rankings.prototype = {
             var cells = [];
             for(var i=0;i<7;i++) {
                 cells[i] = document.createElement("td");
+                var span = document.createElement("span");
+                cells[i].appendChild(span);
                 row.appendChild(cells[i]);
             }
             this.tbody.appendChild(row);
         }
         
-        var cells = row.getElementsByTagName("td");
+        row.setAttribute("class", "");
+        
+        var cells = row.getElementsByTagName("span");
         cells[0].textContent = ranking.rank;
         cells[1].textContent = ranking.team;
         cells[2].textContent = this.teams.getTeamName(ranking.team);
@@ -100,11 +86,20 @@ Rankings.prototype = {
         cells[5].textContent = ranking.highest;
         cells[6].textContent = ranking.matches;
         
+        if (ranking.team === this.search) {
+            row.setAttribute("class", "highlight");
+        }
+        
     }, 
     
     onCallback: function(number) {
         console.log("ranking on callback: " + number);
         //ui.showDetails(this.detailsBox.dom);
         
+    },
+    
+    searchTeam: function(team) {
+        this.search = team;
+        this.onUpdate(this.rankings);
     }
 };

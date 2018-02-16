@@ -61,10 +61,14 @@ exports.update = functions.https.onRequest((req, res) => {
 
         if ( data.awards ) {
             console.log("Saving Award Data!");
-            var awards = {awards: data.awards};
             var eventdoc = firestore.collection("events").doc(event);
             eventdoc.set({awards: data.awards}, {merge: true});
-            console.log("award: ", JSON.stringify(awards));
+            console.log("award: ", JSON.stringify(data.awards));
+        }
+
+        if ( data.finals ) {
+            var eventdoc = firestore.collection("events").doc(event);
+            eventdoc.set({finals: data.finals}, {merge: true});
         }
 
         res.status(200).send("done!");

@@ -501,3 +501,15 @@ footer img {
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.matches .highlight {
+    background-color: yellow;
+    padding-left: 5px;
+    padding-right: 5px;    
+}
+
+.results .highlight {
+    background-color: yellow;
+    padding-left: 5px;
+    padding-right: 5px;    
+}

@@ -21,7 +21,7 @@ Division.prototype = {
         this.data = doc_snap.data();
         this.name = this.data.name;
         this.teamList = new TeamList(this, this.data.teams, thisEvent.eventData.inspections[this.name]);
-        this.matchList = new MatchList(this, this.data.matches);
+        this.matchList = new MatchList(this, this.data.matches, thisEvent.eventData.finals);
         this.rankings = new Rankings(this, this.data.rankings, this.teamList);
         
         divisions[this.data.name] = this;
@@ -46,10 +46,14 @@ Division.prototype = {
     updateInspections: function(inspections) {
         this.teamList.onUpdate(this.data.teams, inspections[this.name]);
     },
+    
+    updateFinals: function(finals) {
+        this.matchList.onUpdateFinals(finals);
+    },
 
-   searchTeam: function(team) {
-        this.teamList.searchTeam(team);
-    //    this.matchList.searchTeam(team);
-    //    this.rankings.searchTeam(team);
-    }
+    searchTeam: function(team) {
+         this.teamList.searchTeam(team);
+         this.matchList.searchTeam(team);
+         this.rankings.searchTeam(team);
+     }
 };

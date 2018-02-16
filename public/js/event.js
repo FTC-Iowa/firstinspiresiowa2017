@@ -208,10 +208,14 @@ Event.prototype = {
         }
         
         if(thisEvent.hasOwnProperty("divisions")) {
-            if(thisEvent.divisions.hasOwnProperty("black"))
+            if(thisEvent.divisions.hasOwnProperty("black")) {
                 thisEvent.divisions.black.updateInspections(thisEvent.eventData.inspections);
-            if(thisEvent.divisions.hasOwnProperty("gold"))
+                thisEvent.divisions.black.updateFinals(thisEvent.eventData.finals);
+            }
+            if(thisEvent.divisions.hasOwnProperty("gold")) {
                 thisEvent.divisions.gold.updateInspections(thisEvent.eventData.inspections);
+                thisEvent.divisions.gold.updateFinals(thisEvent.eventData.finals);
+            }
         }
         
         if(thisEvent.eventData.hasOwnProperty("awards")) {

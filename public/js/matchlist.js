@@ -15,13 +15,13 @@
  */
 
 
-var MatchList = function(div, matchArray) {
-    this.init(div, matchArray);
+var MatchList = function(div, matchArray, finals) {
+    this.init(div, matchArray, finals);
 };
 
 MatchList.prototype = {
     
-    init: function(div, matchArray) {
+    init: function(div, matchArray, finals) {
         console.log("Init MatchList");
         this.div = div;
         this.matchesDom = document.getElementById("matches").cloneNode(true);
@@ -33,11 +33,13 @@ MatchList.prototype = {
         this.resultsDom.setAttribute("class", "results hidden");
         
         var divDoms = this.resultsDom.getElementsByTagName("div");
-        this.finalDom = divDoms[0];
-        this.semifinal1Dom = divDoms[1];
-        this.semifinal2Dom = divDoms[2];
-        this.qualificationDom = divDoms[3];
-        this.practiceDom = divDoms[4];
+        this.dualFinalDom = divDoms[0];
+        this.finalDom = divDoms[1];
+        this.semifinal1Dom = divDoms[2];
+        this.semifinal2Dom = divDoms[3];
+        this.qualificationDom = divDoms[4];
+        this.practiceDom = divDoms[5];
+        this.dualFinalTable = this.dualFinalDom.getElementsByTagName("table")[0];
         this.finalTable = this.finalDom.getElementsByTagName("table")[0];
         this.semifinal1Table = this.semifinal1Dom.getElementsByTagName("table")[0];
         this.semifinal2Table = this.semifinal2Dom.getElementsByTagName("table")[0];
@@ -47,7 +49,12 @@ MatchList.prototype = {
         this.matchesTbody = this.matchesDom.getElementsByTagName("tbody")[0];
         this.resultsTable = this.resultsDom.getElementsByTagName("table")[0];
         
+        this.search = 0;
+        this.matches = matchArray;
+        this.finals = finals;
+        
         this.onUpdate(matchArray);
+        this.onUpdateFinals(finals);
         
         ui.registerCallback(this, this.div.name + "-matchlist");
         
@@ -155,6 +162,15 @@ MatchList.prototype = {
         }
     },
     
+    onUpdateFinals: function(finals) {
+        this.finals = finals;
+        if (this.finals && this.finals.length > 0) {
+            for(var i = 0; i<this.finals.length; i++ ){
+                this.updateRowResults(i + 100, this.finals[i], true);
+            }
+        }
+    },
+    
     updateRowMatches: function(match) {
         var tbody = this.matchesTbody;
         var row = document.getElementById(this.div.name + "-matches-" + match.number);
@@ -166,6 +182,8 @@ MatchList.prototype = {
             
             for(var i=0; i<5; i++) {
                 var cell = document.createElement("td");
+                var span = document.createElement("span");
+                cell.appendChild(span);
                 row.appendChild(cell);
             }
             
@@ -181,33 +199,57 @@ MatchList.prototype = {
         var blue2 = match.blue.teams[1].number + 
                 (match.blue.teams[1].surrogate ? "*" : "");
         
-        var cells = row.getElementsByTagName("td");
+        var cells = row.getElementsByTagName("span");
         cells[0].textContent = match.number;
         cells[1].textContent = red1;
         cells[2].textContent = red2;
         cells[3].textContent = blue1;
         cells[4].textContent = blue2;
         
+        cells[1].setAttribute("class", "");
+        cells[2].setAttribute("class", "");
+        cells[3].setAttribute("class", "");
+        cells[4].setAttribute("class", "");
+        
+        if(this.search === match.red.teams[0].number) {
+            cells[1].setAttribute("class", "highlight");
+            //row.setAttribute("style", "background-color: yellow");
+        } else if(this.search === match.red.teams[1].number) {
+            cells[2].setAttribute("class", "highlight");
+            //row.setAttribute("style", "background-color: yellow");
+        } else if(this.search === match.blue.teams[0].number) {
+            cells[3].setAttribute("class", "highlight");
+            //row.setAttribute("style", "background-color: yellow");
+        } else if(this.search === match.blue.teams[1].number) {
+            cells[4].setAttribute("class", "highlight");
+            //row.setAttribute("style", "background-color: yellow");
+        } else {
+            //row.setAttribute("style", "");
+        }
+        
+        
     },
     
-    updateRowResults: function(idx, match) {
+    updateRowResults: function(idx, match, isDualFinal = false) {
         if (!match.red.hasOwnProperty('teleop')) {
             // match has not been played yet
             return;
         }
-        
-        var tbody = document.getElementById(this.div.name + "-results-" + match.type + "-" + match.number);
+        var dual = isDualFinal ? "-dual" : "";
+        var tbody = document.getElementById(this.div.name + dual + "-results-" + match.type + "-" + match.number);
         if (tbody) {
             
         } else {
             tbody = document.createElement("tbody");
-            tbody.setAttribute("id", this.div.name + "-results-" + match.type + "-" + match.number);
+            tbody.setAttribute("id", this.div.name + dual + "-results-" + match.type + "-" + match.number);
             var row1 = document.createElement("tr");
             var row2 = document.createElement("tr");
             var row3 = document.createElement("tr");
             var cells = [];
             for(var i=0;i<8;i++) {
                 cells[i] = document.createElement("td");
+                var span = document.createElement("span");
+                cells[i].appendChild(span);
             }
             
             row1.appendChild(cells[0]);
@@ -232,36 +274,40 @@ MatchList.prototype = {
             
             
             
-            
-            switch (match.type) {
-                case "Practice":
-                    this.practiceTable.insertBefore(tbody, this.practiceTable.firstChild);
-                    this.practiceDom.className = "";
-                    break;
-                case "Qualification":
-                    this.qualificationTable.insertBefore(tbody, this.qualificationTable.firstChild);
-                    this.qualificationDom.className = "";
-                    break;
-                case "Semifinal":
-                    var num = Math.floor(match.number/10);
-                    if (num===1){
-                        this.semifinal1Table.insertBefore(tbody, this.semifinal1Table.firstChild);
-                        this.semifinal1Dom.className = "";
+            if (isDualFinal) {
+                this.dualFinalTable.insertBefore(tbody, this.dualFinalTable.firstChild);
+                this.dualFinalDom.className = "";
+            } else {
+                switch (match.type) {
+                    case "Practice":
+                        this.practiceTable.insertBefore(tbody, this.practiceTable.firstChild);
+                        this.practiceDom.className = "";
                         break;
-                    } else {
-                        this.semifinal2Table.insertBefore(tbody, this.semifinal2Table.firstChild);
-                        this.semifinal2Dom.className = "";
+                    case "Qualification":
+                        this.qualificationTable.insertBefore(tbody, this.qualificationTable.firstChild);
+                        this.qualificationDom.className = "";
                         break;
-                    }
-                case "Final":
-                    this.finalTable.insertBefore(tbody, this.finalTable.firstChild);
-                    this.finalDom.className = "";
-                    break;                    
+                    case "Semifinal":
+                        var num = Math.floor(match.number/10);
+                        if (num===1){
+                            this.semifinal1Table.insertBefore(tbody, this.semifinal1Table.firstChild);
+                            this.semifinal1Dom.className = "";
+                            break;
+                        } else {
+                            this.semifinal2Table.insertBefore(tbody, this.semifinal2Table.firstChild);
+                            this.semifinal2Dom.className = "";
+                            break;
+                        }
+                    case "Final":
+                        this.finalTable.insertBefore(tbody, this.finalTable.firstChild);
+                        this.finalDom.className = "";
+                        break;                    
+                }
             }
-            //this.resultsTable.appendChild(tbody);
         }
         
         var cells = tbody.getElementsByTagName("td");
+        var spans = tbody.getElementsByTagName("span");
         
         
         var redScore, blueScore;
@@ -270,7 +316,7 @@ MatchList.prototype = {
         
         var name = this.getName(match);
         
-        cells[0].textContent = name;
+        spans[0].textContent = name;
         var callback = "ui.onCallback('" + this.div.name + "-matchlist', " + idx + ")";
         tbody.setAttribute("onclick", callback);
         
@@ -286,14 +332,45 @@ MatchList.prototype = {
             winner = "T";
         }
         
-        cells[1].textContent = redScore + "-" + blueScore + " " + winner;
-        cells[2].textContent = match.red.teams[0].number + (match.red.teams[0].surrogate ? "*" : "");
-        cells[3].textContent = match.blue.teams[0].number + (match.blue.teams[0].surrogate ? "*" : "");
-        cells[4].textContent = match.red.teams[1].number + (match.red.teams[1].surrogate ? "*" : "");
-        cells[5].textContent = match.blue.teams[1].number + (match.blue.teams[1].surrogate ? "*" : "");
+        spans[2].setAttribute("class", "");
+        spans[3].setAttribute("class", "");
+        spans[4].setAttribute("class", "");
+        spans[5].setAttribute("class", "");
+        
+        spans[1].textContent = redScore + "-" + blueScore + " " + winner;
+        spans[2].textContent = match.red.teams[0].number + (match.red.teams[0].surrogate ? "*" : "");
+        spans[3].textContent = match.blue.teams[0].number + (match.blue.teams[0].surrogate ? "*" : "");
+        spans[4].textContent = match.red.teams[1].number + (match.red.teams[1].surrogate ? "*" : "");
+        spans[5].textContent = match.blue.teams[1].number + (match.blue.teams[1].surrogate ? "*" : "");
         if (match.red.teams.length ===  3) {
-            cells[6].textContent = match.red.teams[2].number + (match.red.teams[2].surrogate ? "*" : "");
-            cells[7].textContent = match.blue.teams[2].number + (match.blue.teams[2].surrogate ? "*" : "");
+            spans[6].textContent = match.red.teams[2].number + (match.red.teams[2].surrogate ? "*" : "");
+            spans[7].textContent = match.blue.teams[2].number + (match.blue.teams[2].surrogate ? "*" : "");
+            spans[6].setAttribute("class", "");
+            spans[7].setAttribute("class", "");
         } 
+        
+        
+        
+        
+        if(this.search === match.red.teams[0].number) {
+            spans[2].setAttribute("class", "highlight");
+        } else if(this.search === match.red.teams[1].number) {
+            spans[4].setAttribute("class", "highlight");
+        } else if(this.search === match.blue.teams[0].number) {
+            spans[3].setAttribute("class", "highlight");
+        } else if(this.search === match.blue.teams[1].number) {
+            spans[5].setAttribute("class", "highlight");
+        } else if (match.red.teams.length === 3 && this.search === match.red.teams[2].number) {
+            spans[6].setAttribute("class", "highlight");
+        } else if (match.blue.teams.length === 3 && this.search === match.blue.teams[2].number) {
+            spans[7].setAttribute("class", "highlight");
+        }
+        
+    },
+    
+    searchTeam: function(team) {
+        this.search = team;
+        this.onUpdate(this.matches);
+        this.onUpdateFinals(this.finals);
     }
 };

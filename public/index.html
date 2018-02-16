@@ -416,9 +416,9 @@
                 <img src="/img/logo-horizontal.png" alt="FTC Iowa">
             </div>
             <div id="team-search">
-                <input id="team-search-input" type="number" placeholder="Team Search">
+                <input id="team-search-input" type="number" placeholder="Team Search" onkeydown="if (event.keyCode === 13) ui.onSearchClick();">
                 <div id="button-holder" onclick="ui.onSearchClick()">
-                        <img src="/img/magnifying_glass.png">
+                        <img src="/img/magnifying_glass.png" alt="">
                 </div>
             </div>
         </div>
@@ -529,6 +529,20 @@
         <article id="results" class="results hidden">
             <center>
                 <div class="hidden">
+                    <h2>Event Finals</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Match</th>
+                                <th>Result</th>
+                                <th>Red</th>
+                                <th>Blue</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                
+                <div class="hidden">
                     <h2>Finals</h2>
                     <table>
                         <thead>
@@ -637,16 +651,15 @@
     
     
     
-    <script src="/js/ui.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/teamlist.js?0.1.0"></script>
-    <script src="/js/matchlist.js?0.1.0"></script>
-    <script src="/js/rankings.js?0.1.0"></script>
-    <script src="/js/division.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/notification.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/awards.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/twitter.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/maps.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/event.js?0.1.0" type="text/javascript"></script>
-    <script src="/js/SearchHighlight.pack.js" type="text/javascript"></script>
+    <script src="/js/ui.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/teamlist.js?0.2.0"></script>
+    <script src="/js/matchlist.js?0.2.0"></script>
+    <script src="/js/rankings.js?0.2.0"></script>
+    <script src="/js/division.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/notification.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/awards.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/twitter.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/maps.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/event.js?0.2.0" type="text/javascript"></script>
 </body>
 </html>
