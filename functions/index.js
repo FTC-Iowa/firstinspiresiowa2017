@@ -1,3 +1,4 @@
+const cors = require('cors')({origin: true});
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const Firestore = require('@google-cloud/firestore');
@@ -188,3 +189,31 @@ exports.subscribe = functions.https.onRequest((req, res) => {
     }
 });
 
+//{eventId: event_id, number: number, division: division, type: inspectionType, state: state, password: "pass"}
+exports.inspectionUpdate = functions.https.onRequest((req, res) => {
+    cors(req, res, () => {
+        var data = req.body;
+        if (data.hasOwnProperty("eventId") 
+                && data.hasOwnProperty("number")
+                && data.hasOwnProperty("division")
+                && data.hasOwnProperty("type") 
+                && data.hasOwnProperty("state")
+                && data.hasOwnProperty("password") ) {
+
+            var eventdoc = firestore.collection("events").doc(data.eventId);
+
+            var location = "inspections." + data.division + "._" + data.number + "." + data.type + ".state";
+            var updateData = {};
+            updateData[location] = data.state;
+            console.log(updateData);
+            eventdoc.update(updateData).then(function() {
+                console.log("Document successfully updated!");
+            });
+    
+            res.status(200).send("Success");
+        } else {
+            console.log("Invalid inspection request:", JSON.stringify(data));
+            res.status(400).send("Invalid request");
+        }
+    });
+});

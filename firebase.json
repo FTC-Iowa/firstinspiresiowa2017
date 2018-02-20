@@ -22,6 +22,10 @@
         {
             "source": "/eventUpload",
             "function": "eventUpload"
+        },
+        {
+            "source": "/inspectionUpdate",
+            "function": "inspectionUpdate"
         }
     ]
   },

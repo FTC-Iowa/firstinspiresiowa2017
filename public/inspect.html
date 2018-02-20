@@ -113,60 +113,90 @@ limitations under the License.
     
     <main>
         <center>
-        <article id="options">
-            <center>                
-                <form class="form">
-                    <div class="switch-field" id="row">
-                        <input type="radio" name="inspection-type" value="robot" checked id="robotCheck">
-                        <label for="robotCheck">Robot</label>
-                        <input type="radio" name="inspection-type" value="field" id="fieldCheck">
-                        <label for="fieldCheck">Field</label>
-                        <input type="radio" name="inspection-type" value="judging" id="judgingCheck">
-                        <label for="judgingCheck">Judging</label>
-                        <input type="radio" name="inspection-type" value="picture" id="pictureCheck">
-                        <label for="pictureCheck">Picture</label>
+            <article id="options">
+                <center>                
+                    <form class="form">
+                        <div class="switch-field" id="row" onclick="onInspectTypeChange();">
+                            <input type="radio" name="inspection-type" value="hw" checked id="robotCheck">
+                            <label for="robotCheck">Robot</label>
+                            <input type="radio" name="inspection-type" value="field" id="fieldCheck">
+                            <label for="fieldCheck">Field</label>
+                            <input type="radio" name="inspection-type" value="judge" id="judgingCheck">
+                            <label for="judgingCheck">Judging</label>
+                            <input type="radio" name="inspection-type" value="picture" id="pictureCheck">
+                            <label for="pictureCheck">Picture</label>
+                        </div>
+                    </form>
+                </center>
+            </article>
+        
+            <article id="selectTeamsCamera" class="hidden">
+                <br><br><br>
+                <button onclick="selectTeamCamera()">Select Team</button>
+            </article>
+            
+            <article id="selectTeamsNoCamera" class="hidden">
+                <br><br><br>
+                <input id="teamNumberInput" type="number">
+                <button onclick="selectTeamNoCamera()">Search</button>
+            </article>
+            
+            <article id="cameraSelect" class="hidden">
+                <h2>Select Camera: </h2>
+                <center>
+                    <form name="cameraForm">
+                        <div class="switch-field column" id="camera">
+                            <input type="radio" name="camera" value="99" id="camera99" onchange="onCameraChange(99);">
+                            <label for="camera99">No Camera</label>
+                        </div>
+                    </form>
+                <center>
+            </article>
+        
+            <article id="cameraPreview" class="hidden">
+                <br>
+                <video id="preview"></video>
+            </article>
+
+            <!--
+            0: not started
+            1: in progress
+            2: rework
+            3: pass
+            4: fail
+            5: late
+            -->
+
+
+            <article id="team" class="hidden">
+                <center>
+                <h1 id="teamNumber"></h1>
+                <form name="stateForm">
+                    <div class="switch-field column" id="states">
+                        <input type="radio" name="state" value="0" checked id="state0" onchange="onStateChange();">
+                        <label for="state0">Not Started</label>
+                        <input type="radio" name="state" value="1" id="state1" onchange="onStateChange();">
+                        <label for="state1">In Progress</label>
+                        <input type="radio" name="state" value="2" id="state2" onchange="onStateChange();">
+                        <label for="state2">Rework Required</label>
+                        <input type="radio" name="state" value="3" id="state3" onchange="onStateChange();">
+                        <label for="state3">Pass</label>
+                        <input type="radio" name="state" value="4" id="state4" onchange="onStateChange();">
+                        <label for="state4">Fail</label>
                     </div>
                 </form>
-                
-                <br>
-                <button onclick="selectTeam()">Select Team</button>
-                <br><br>
-            </center>
-        </article>
+                <center>
+            </article>
+
+            <article id="saveButton" class="hidden">
+                <center>
+                    <br>
+                    <button onclick="onSaveClick();">Save!</button>
+                </center>
+            </article>
         
-        <article id="select" class="hidden">
-            <video id="preview"></video>
-        </article>
         
-        <!--
-        0: not started
-        1: in progress
-        2: rework
-        3: pass
-        4: fail
-        5: late
-        -->
-            
-            
-        <article id="team" class="">
-            <center>
-            <h1 id="teamNumber"></h1>
-            <form>
-                <div class="switch-field column" id="states">
-                    <input type="radio" name="state" value="0" checked id="state0">
-                    <label for="state0">Not Started</label>
-                    <input type="radio" name="state" value="1" id="state1">
-                    <label for="state1">In Progress</label>
-                    <input type="radio" name="state" value="2" id="state2">
-                    <label for="state2">Rework Required</label>
-                    <input type="radio" name="state" value="3" id="state3">
-                    <label for="state3">Pass</label>
-                    <input type="radio" name="state" value="4" id="state4">
-                    <label for="state4">Fail</label>
-                </div>
-            </form>
-            <center>
-        </article>
+        
         </center>
     </main>
     
@@ -182,6 +212,6 @@ limitations under the License.
         </center>
     </footer>
     
-    <script src="/js/inspections.js?0.2.0" type="text/javascript"></script>
+    <script src="/js/inspections.js?0.2.3" type="text/javascript"></script>
 </body>
 </html>

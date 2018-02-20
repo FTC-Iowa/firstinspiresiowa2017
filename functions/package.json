@@ -3,6 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "dependencies": {
     "@google-cloud/firestore": "^0.8.2",
+    "cors": "^2.8.4",
     "deep-equal": "^1.0.1",
     "firebase-admin": "^5.5.1",
     "firebase-functions": "^0.7.3",
