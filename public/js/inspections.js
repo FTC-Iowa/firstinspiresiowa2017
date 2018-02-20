@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initScanner() {
+    camera = null;
     scanner = new Instascan.Scanner({
         video: document.getElementById("preview"),
         mirror: false,
@@ -105,6 +106,7 @@ function initScanner() {
     scanner.addListener('scan', onScan);
     Instascan.Camera.getCameras().then(selectCamera).catch(function(e) {
         console.error(e);
+        enableSelectTeams();
     });
 }
 
@@ -151,7 +153,7 @@ function loadTeam(number) {
         document.getElementById("teamNumber").textContent = "Team # " + number;
         state = inspection[inspectType].state;
         document.stateForm.state.value = state;
-        if (state === 0) {
+        if (state === 0 || state === "0") {
             state = 1;
             updateServer();
         }
@@ -217,8 +219,7 @@ function selectCamera(cameras) {
             div.insertBefore(label, div.firstChild);
             div.insertBefore(input, div.firstChild);
         }
-        input.setAttribute("checked","");
-        onCameraChange(i-1);
+        onCameraChange(99);
         document.getElementById("saveButton").className = "";
         document.getElementById("cameraSelect").className = "";
     }
