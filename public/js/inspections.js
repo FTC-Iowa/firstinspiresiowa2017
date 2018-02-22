@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             event_id = "ia";
         }
-        event_id = "test";
+        //event_id = "test";
         //this.event_collection = this.db.collection("events");
 
     } catch (e) {
@@ -123,7 +123,8 @@ function onChange(doc) {
 }
 
 function onScan(content) {
-    document.getElementById("cameraPreview").className = "hidden";
+    document.getElementById("cameraPreview").className = "hidden";    
+    document.getElementById("selectTeamsNoCamera").className = "hidden";
     console.log("found scan: ", content);
     scanner.stop();
     loadTeam(content);
@@ -138,6 +139,7 @@ function updateServer() {
 
 function loadTeam(number) {
     inspection = null;
+    var oldTeamNumber = teamNumber;
     teamNumber = number;
     if(inspections.black.hasOwnProperty("_" + number)) {
         inspection = inspections.black["_" + number];
@@ -153,7 +155,7 @@ function loadTeam(number) {
         document.getElementById("teamNumber").textContent = "Team # " + number;
         state = inspection[inspectType].state;
         document.stateForm.state.value = state;
-        if (state === 0 || state === "0") {
+        if ((state === 0 || state === "0") && oldTeamNumber === 0) {
             state = 1;
             updateServer();
         }
@@ -168,10 +170,13 @@ function loadTeam(number) {
 function selectTeamCamera() {
     document.getElementById("selectTeamsCamera").className = "hidden";
     document.getElementById("cameraPreview").className = "";
+    document.getElementById("teamNumberInput").value = "";
+    document.getElementById("selectTeamsNoCamera").className = "";
     scanner.start(camera);
 }
 
 function selectTeamNoCamera() {
+    document.getElementById("cameraPreview").className = "hidden";
     var team = document.getElementById("teamNumberInput").value;
     document.getElementById("selectTeamsNoCamera").className = "hidden";
     loadTeam(team);
@@ -248,6 +253,7 @@ function onSaveClick() {
             document.getElementById("team").className = "hidden";
             document.getElementById("saveButton").className = "hidden";
             enableSelectTeams();
+            teamNumber = 0;
             break;
     }
 }

@@ -11,6 +11,46 @@
       gtag('config', 'UA-111934327-1');
     </script>
 
+    <script>
+        // Get IE or Edge browser version
+        var version = detectIE();
+
+        if (version === false) {
+        } else {
+          alert("This website does not support Internet Explorer.  Please view in a modern web browser such as Chrome or Firefox.");
+        }
+        /**
+         * detect IE
+         * returns version of IE or false, if browser is not Internet Explorer
+         */
+        function detectIE() {
+          var ua = window.navigator.userAgent;
+          var msie = ua.indexOf('MSIE ');
+          if (msie > 0) {
+            // IE 10 or older => return version number
+            return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+          }
+
+          var trident = ua.indexOf('Trident/');
+          if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+          }
+
+          var edge = ua.indexOf('Edge/');
+          if (edge > 0) {
+            // Edge (IE 12+) => return version number
+            return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+          }
+
+          // other browser
+          return false;
+        }
+        
+    </script>
+    
+    
     <link rel="manifest" href="/manifest.json">
     
     <meta charset="utf-8" />
@@ -642,6 +682,17 @@
                     </thead>
                     <tbody>
                     </tbody>
+                </table><br>
+                Legend:
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="state1" width="25%">In Progress</td>
+                            <td class="state2" width="25%">Rework Required</td>
+                            <td class="state3" width="25%">Pass</td>
+                            <td class="state4" width="25%">Fail</td>
+                        </tr>
+                    </thead>
                 </table>
             </center>
         </article>
@@ -652,7 +703,7 @@
     
     
     <script src="/js/ui.js?0.2.0" type="text/javascript"></script>
-    <script src="/js/teamlist.js?0.2.0"></script>
+    <script src="/js/teamlist.js?0.2.1"></script>
     <script src="/js/matchlist.js?0.2.0"></script>
     <script src="/js/rankings.js?0.2.0"></script>
     <script src="/js/division.js?0.2.0" type="text/javascript"></script>
