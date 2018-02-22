@@ -116,7 +116,9 @@ Ui.prototype = {
     
     setAwardsVisible: function(state) {
         var awards = document.getElementById("td-awards");
+        var maps = document.getElementById("td-map");
         if(state) {
+            this.hide(maps);
             this.unhide(awards);
         } else {
             this.hide(awards);

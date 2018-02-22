@@ -28,7 +28,7 @@ TeamList.prototype = {
         this.domInspect = document.getElementById("inspections").cloneNode(true);
         this.domInspect.setAttribute("id", div.name + "-inspections");
         this.domList.setAttribute("class", "inspections hidden");
-        this.InspectTbody = this.domInspect.getElementsByTagName("tbody")[1];
+        this.InspectTbody = this.domInspect.getElementsByTagName("tbody")[0];
         
         for (var i = 0, len = teamArray.length; i < len; i++) {
             this.updateRow(teamArray[i]);
