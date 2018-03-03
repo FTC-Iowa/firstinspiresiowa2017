@@ -95,6 +95,19 @@ exports.eventUpload = functions.https.onRequest((req, res) => {
 });
 
 
+exports.apiAccess = functions.https.onRequest((req, res) => {
+    console.log("apiAcces: req.query:", JSON.stringify(req.query));
+    var eventId = req.query.event;
+    var divId = req.query.division;
+   
+    var doc = firestore.collection("events").doc(eventId).collection("divisions").doc(divId);
+    doc.get().then( function(doc) {
+        res.status(200).send(JSON.stringify(doc.data()));
+    }).catch( function (e) {
+        res.status(400).send("error: " + e);
+    });
+});
+
 
 
 function getMatchName(match) {

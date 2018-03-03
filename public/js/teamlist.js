@@ -95,6 +95,8 @@ TeamList.prototype = {
     },
     
     updateInspectionRow: function(teamNumber) {
+        if(! this.inspections )
+            return;
         var row = document.getElementById(this.div.name + "-inspection-" + teamNumber);
         if (row) {
             

@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var h = window.location.href.split("#")[1];
         if(h === "test") {
             event_id = "test";
+        } else if (h==="lane") {
+            event_id = "lane";
         } else {
             event_id = "ia";
         }

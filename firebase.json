@@ -26,6 +26,10 @@
         {
             "source": "/inspectionUpdate",
             "function": "inspectionUpdate"
+        },
+        {
+            "source": "/api/division",
+            "function": "apiAccess"
         }
     ]
   },
