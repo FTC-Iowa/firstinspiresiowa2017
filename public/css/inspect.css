@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-/* 
+/*
     Created on : Feb 15, 2018, 10:17:37 PM
     Author     : vens
 */
@@ -28,7 +28,7 @@ video {
 }
 
 body {
-    
+
 }
 
 article {
@@ -106,4 +106,19 @@ article {
 
 #types .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
+}
+
+#teamNumberInput {
+  font-size: xx-large;
+  width: 200px;
+}
+
+#selectTeamButton{
+  font-size: large;
+  padding: 10px;
+}
+
+#statusSaveButton{
+  font-size: large;
+  padding: 10px;
 }

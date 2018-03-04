@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 vens.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,15 +25,15 @@ HttpClient.prototype = {
         this.url = url;
         this.callback = callback;
     },
-    
+
     post: function(data) {
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() { 
+        xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200)
                 server.callback(xhr.responseText);
         };
 
-        xhr.open( "POST", this.url, true );            
+        xhr.open( "POST", this.url, true );
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send( JSON.stringify(data) );
     }
@@ -59,7 +59,7 @@ function onInspectTypeChange() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {    
+document.addEventListener('DOMContentLoaded', function() {
     try {
         let app = firebase.app();
         let features = ['auth', 'messaging', 'storage', 'firestore'].filter(feature => typeof app[feature] === 'function');
@@ -83,17 +83,17 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
-    
-    
+
+
     if(event_id) {
         var event_doc = db.collection("events").doc(event_id);
-        
+
         event_doc.get().then(onChange);
         event_doc.onSnapshot(onChange);
-        
+
     } else {
 
-    }   
+    }
 });
 
 function initScanner() {
@@ -123,7 +123,7 @@ function onChange(doc) {
 }
 
 function onScan(content) {
-    document.getElementById("cameraPreview").className = "hidden";    
+    document.getElementById("cameraPreview").className = "hidden";
     document.getElementById("selectTeamsNoCamera").className = "hidden";
     console.log("found scan: ", content);
     scanner.stop();
@@ -148,7 +148,7 @@ function loadTeam(number) {
         inspection = inspections.gold["_" + number];
         division = "gold";
     }
-    
+
     if(inspection) {
         teamNumber = number;
         console.log(inspection);
@@ -200,34 +200,34 @@ var cameraList;
 
 function selectCamera(cameras) {
     cameraList = cameras;
-    if(cameras.length === 0) {
+    //if(true || cameras.length === 0) {
         console.error('No cameras found');
         camera = null;
         enableSelectTeams();
-    } else {
-        //todo add an option to select camera
-        mode = "select-camera";
-        document.getElementById("cameraSelect").className = "";
-        var div = document.getElementById("camera");
-        var input;
-        var label
-        for (var i=0; i<cameras.length; i++) {
-            input = document.createElement("input");
-            label = document.createElement("label");
-            input.setAttribute("type", "radio");
-            input.setAttribute("name", "camera");
-            input.setAttribute("value", i );
-            input.setAttribute("id", "camera" + i);
-            input.setAttribute("onchange", "onCameraChange("+i+");");
-            label.setAttribute("for", "camera" + i);
-            label.textContent = cameras[i].name;
-            div.insertBefore(label, div.firstChild);
-            div.insertBefore(input, div.firstChild);
-        }
-        onCameraChange(99);
-        document.getElementById("saveButton").className = "";
-        document.getElementById("cameraSelect").className = "";
-    }
+    // } else {
+    //     //todo add an option to select camera
+    //     mode = "select-camera";
+    //     document.getElementById("cameraSelect").className = "";
+    //     var div = document.getElementById("camera");
+    //     var input;
+    //     var label
+    //     for (var i=0; i<cameras.length; i++) {
+    //         input = document.createElement("input");
+    //         label = document.createElement("label");
+    //         input.setAttribute("type", "radio");
+    //         input.setAttribute("name", "camera");
+    //         input.setAttribute("value", i );
+    //         input.setAttribute("id", "camera" + i);
+    //         input.setAttribute("onchange", "onCameraChange("+i+");");
+    //         label.setAttribute("for", "camera" + i);
+    //         label.textContent = cameras[i].name;
+    //         div.insertBefore(label, div.firstChild);
+    //         div.insertBefore(input, div.firstChild);
+    //     }
+    //     onCameraChange(99);
+    //     document.getElementById("saveButton").className = "";
+    //     document.getElementById("cameraSelect").className = "";
+    // }
 }
 
 
