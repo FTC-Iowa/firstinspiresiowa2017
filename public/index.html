@@ -47,21 +47,21 @@
           // other browser
           return false;
         }
-        
+
     </script>
-    
-    
+
+
     <link rel="manifest" href="/manifest.json">
-    
+
     <meta charset="utf-8" />
     <title>FTC Iowa Scores</title>
     <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="FTC Scores">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
- 
+
     <meta name="theme-color" content="#003974">
-    
+
 <!--    <link href="img/Icon-76@2x.png" sizes="152x152" rel="apple-touch-icon-precomposed">
     <link href="img/Icon-72@2x.png" sizes="144x144" rel="apple-touch-icon-precomposed">
     <link href="img/Icon-76.png" sizes="76x76" rel="apple-touch-icon-precomposed">
@@ -71,7 +71,7 @@
     <link href="img/Icon-60.png" sizes="60x60" rel="apple-touch-icon-precomposed">
     <link href="img/Icon@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
     <link href="img/Icon.png" sizes="72x72" rel="apple-touch-icon-precomposed">
-    
+
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.5.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -88,32 +88,32 @@
 	-->
     <link href="/img/favicon.png" rel="icon" sizes="32x32">
     <link href="/img/favicon.png" rel="shortcut icon" type="image/png">
-    
-    
+
+
     <script src='/js/moment.min.js'></script>
     <script src="/js/jquery-2.1.3.min.js" type="text/javascript"></script>
 	<script src="/js/imageviewer.min.js"></script>
     <link rel="stylesheet" href="/css/imageviewer.css">
-    
+
     <!--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css">
-    
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/gcal.min.js'></script>
     -->
-    
-    
+
+
     <link rel="stylesheet" href="/fullcalendar/lib/fullcalendar.min.css">
     <link rel="stylesheet" href="/fullcalendar/scheduler.css">
     <script src='/fullcalendar/lib/fullcalendar.min.js'></script>
     <script src='/fullcalendar/lib/gcal.min.js'></script>
     <script src='/fullcalendar/scheduler.js'></script>
-    
+
     <!--
     <script src="https://polygit.org/components/webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="/elements/color-bar.html">
     -->
-    
+
     <link rel="stylesheet" href="/css/ftc.css?0.0.1">
 </head>
 <body>
@@ -151,15 +151,15 @@
             </table>
         </nav>
     </header>
-    
+
     <aside id="detail-back" class="hidden">
         <div id="detail-box"></div>
     </aside>
-    
-    
-    
+
+
+
     <main id="content">
-        
+
         <article id="event-information" class="information">
             <center>
                 <div id="event-info-area">
@@ -173,9 +173,9 @@
                     <a href="https://www.youtube.com/watch?v=M9Y5S8hPr84" target="_blank">YouTube Stream: Black Division</a>
                     <br><br>
                     <a href="https://www.youtube.com/watch?v=-p5wwmgoRYI" target="_blank">YouTube Stream: Gold Division</a>
-                    <br>                    
+                    <br>
                 </div>
-                
+
                 <div id="disclaimer" class="hidden">
                     <h3>Disclaimer</h3>
                     <p>This web site is still in early development.  It is likely there
@@ -186,9 +186,9 @@
                         <a href="mailto:jeramie.vens@gmail.com?Subject=[FTC Website]" target="_blank">Jeramie.Vens@gmail.com</a></p>
                 </div>
             </center>
-        </article>        
-        
-        <article id="event-map" class="map hidden">		
+        </article>
+
+        <article id="event-map" class="map hidden">
             <div id="map-pits">
                     <img id="map-pits-img" width="100%" src="/img/pits.png?1.0.0" data-high-res-src="/img/pits.png?1.0.0" alt="" class="pannable-image">
             </div>
@@ -196,21 +196,21 @@
                     <img id="map-venue-img" width="100%" src="/img/venue.png" data-high-res-src="/img/venue.png" alt="" class="pannable-image">
             </div>
         </article>
-		
+
         <article id="event-schedule" class="schedule hidden">
             <div id="calendar"></div>
         </article>
-        
+
         <article id="event-twitter" class="twitter hidden" style="height:100%">
                 <!--
-                href="https://twitter.com/hashtag/omgrobots" 
+                href="https://twitter.com/hashtag/omgrobots"
                 data-widget-id="959475738645815296"
-                
+
                 href="https://twitter.com/hashtag/FTCIowaChamp"
                 data-widget-id="963263685937557504"
                 -->
             <a id="twitter-container"
-                class="twitter-timeline"  
+                class="twitter-timeline"
                 href="https://twitter.com/hashtag/FTCIowaChamp"
                 data-widget-id="963263685937557504"
                 data-height="1000"
@@ -220,17 +220,17 @@
             </a>
             <!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
         </article>
-        
+
         <article id="event-awards" class="awards hidden">
             <center id="award-list">
-                
+
                 <div id="award-placeholder">
                     <h2>
                         Awards Not Available
                     </h2>
                     Awards will be posted at the conclusion of the closing ceremony.
                 </div>
-                
+
                 <div id="award-inspire" class="hidden">
                     <h2>
                         Inspire Award
@@ -240,23 +240,23 @@
                             1st:
                         </dt>
                         <dd id="award-inspire-1">
-                            
+
                         </dd>
                         <dt>
                             2nd:
                         </dt>
                         <dd id="award-inspire-2">
-                            
+
                         </dd>
                         <dt>
                             3rd:
                         </dt>
                         <dd id="award-inspire-3">
-                            
+
                         </dd>
                     </dl>
                 </div>
-                
+
                 <div id="award-think" class="hidden">
                     <h2>
                         Think Award
@@ -276,8 +276,8 @@
                         </dd>
                     </dl>
                 </div>
-                
-                
+
+
                 <div id="award-connect" class="hidden">
                     <h2>
                         Connect Award
@@ -296,9 +296,9 @@
                         <dd id="award-connect-3">
                         </dd>
                     </dl>
-                </div>    
-                
-                
+                </div>
+
+
                 <div id="award-innovate" class="hidden">
                     <h2>
                         Rockwell Collins Innovate Award
@@ -317,10 +317,10 @@
                         <dd id="award-innovate-3">
                         </dd>
                     </dl>
-                </div>   
-                
-                
-                
+                </div>
+
+
+
                 <div id="award-design" class="hidden">
                     <h2>
                         Design Award
@@ -339,9 +339,9 @@
                         <dd id="award-design-3">
                         </dd>
                     </dl>
-                </div> 
-                
-                
+                </div>
+
+
                 <div id="award-motivate" class="hidden">
                     <h2>
                         Motivate Award
@@ -360,9 +360,9 @@
                         <dd id="award-motivate-3">
                         </dd>
                     </dl>
-                </div> 
-                
-                
+                </div>
+
+
                 <div id="award-control" class="hidden">
                     <h2>
                         Control Award
@@ -381,9 +381,9 @@
                         <dd id="award-control-3">
                         </dd>
                     </dl>
-                </div> 
-                
-                
+                </div>
+
+
                 <div id="award-promote" class="hidden">
                     <h2>
                         Promote Award
@@ -402,9 +402,9 @@
                         <dd id="award-promote-3">
                         </dd>
                     </dl>
-                </div> 
-                
-                
+                </div>
+
+
                 <div id="award-compass" class="hidden">
                     <h2>
                         Compass Award
@@ -416,9 +416,9 @@
                         <dd id="award-compass-1">
                         </dd>
                     </dl>
-                </div> 
-                
-                
+                </div>
+
+
                 <div id="award-judges" class="hidden">
                     <h2>
                     </h2>
@@ -436,18 +436,18 @@
                         <dd>
                         </dd>
                     </dl>
-                </div> 
+                </div>
             </center>
         </article>
-        
-        
-        
+
+
+
     </main>
-    
-    
-    
-    
-    
+
+
+
+
+
     <footer id="footer">
         <!--<div id="event_name" class="hidden"></div>-->
         <center>
@@ -464,12 +464,12 @@
             </div>
         </center>
     </footer>
-    
-    
+
+
     <div id="templates">
-        
-        
-        
+
+
+
         <div id="match-details">
             <h2 class="red-win" id="match-details-name">Match SF-2-2</h2>
             <h3 class="red-win" id="match-details-score">245-190 R</h3>
@@ -518,19 +518,19 @@
                 </tbody>
             </table>
         </div>
-        
+
         <div id="rank-details">
             <h2>Team Name</h2>
-            
+
         </div>
-        
-        
-        
-        
+
+
+
+
         <article id="teamlist" class="teams hidden">
             <center>
                 <div class="notification-enable hidden">
-                    <button onclick="ui.onNotificationEnableClick()">Click to enable notification for score updates.</button> 
+                    <button onclick="ui.onNotificationEnableClick()">Click to enable notification for score updates.</button>
                 </div>
                 <table>
                     <thead>
@@ -545,7 +545,7 @@
                 </table>
             </center>
         </article>
-        
+
         <article id="rankings" class="rankings hidden">
             <center>
                 <table>
@@ -565,7 +565,7 @@
                 </table>
             </center>
         </article>
-        
+
         <article id="results" class="results hidden">
             <center>
                 <div class="hidden">
@@ -581,7 +581,7 @@
                         </thead>
                     </table>
                 </div>
-                
+
                 <div class="hidden">
                     <h2>Finals</h2>
                     <table>
@@ -649,8 +649,8 @@
                 </div>
             </center>
         </article>
-        
-        
+
+
         <article id="matches" class="matches hidden">
             <center>
                 <table>
@@ -658,7 +658,7 @@
                         <tr>
                             <th>#</th>
                             <th colspan="2">Red Teams</th>
-                            
+
                             <th colspan="2">Blue Teams</th>
                         </tr>
                     </thead>
@@ -667,7 +667,7 @@
                 </table>
             </center>
         </article>
-        
+
         <article id="inspections" class="inspections hidden">
             <center>
                 <table>
@@ -689,19 +689,19 @@
                         <tr>
                             <td class="state1" width="25%">In Progress</td>
                             <td class="state2" width="25%">Rework Required</td>
-                            <td class="state3" width="25%">Pass</td>
-                            <td class="state4" width="25%">Fail</td>
+                            <td class="state3" width="25%">Complete</td>
+                            <td class="state5" width="25%">Late</td>
                         </tr>
                     </thead>
                 </table>
             </center>
         </article>
     </div>
-    
-    
-    
-    
-    
+
+
+
+
+
     <script src="/js/ui.js?0.2.1" type="text/javascript"></script>
     <script src="/js/teamlist.js?0.2.5"></script>
     <script src="/js/matchlist.js?0.2.0"></script>
