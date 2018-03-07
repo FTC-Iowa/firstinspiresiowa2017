@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (h==="lane") {
             event_id = "lane";
         } else {
-            event_id = "ia";
+            event_id = "nsr";
         }
         //event_id = "test";
         //this.event_collection = this.db.collection("events");
@@ -94,7 +94,7 @@ Event.prototype = {
             }
             
             
-            if(thisEvent.eventData.hasOwnProperty("twitter")) {
+            if(true || thisEvent.eventData.hasOwnProperty("twitter")) {
                 var twitter = document.getElementById("twitter-container");
                 //twitter.setAttribute("data-widget-id", thisEvent.eventData.twitter);
                 twitterInit(document,"script","twitter-wjs");

@@ -115,7 +115,7 @@ TeamList.prototype = {
         cells = row.getElementsByTagName("td");
         spans = row.getElementsByTagName("span");
         var inspection = this.inspections["_" + teamNumber];
-        //console.log("number: "+teamNumber+" == "+ inspection);
+        console.log("number: "+teamNumber+" == "+ inspection);
         spans[0].textContent = teamNumber;
         spans[1].textContent = inspection.hw.start;
         cells[1].className = "state" + inspection.hw.state;

@@ -22,13 +22,14 @@ var Maps = function() {
 
 Maps.prototype = {
     init: function() {
-        this.viewPit = new ImageViewer('#map-pits-img', {snapView: false});
-        //this.viewVenue = new ImageViewer('#map-venue-img', {snapView: false});
+        this.viewPit1 = new ImageViewer('#map-pits1-img', {snapView: false});
+        this.viewPit2 = new ImageViewer('#map-pits2-img', {snapView: false});
     },
     
     refresh: function() {
         console.log("Refresh maps");
-        thisEvent.maps.viewPit.refresh();
+        thisEvent.maps.viewPit1.refresh();
+        thisEvent.maps.viewPit2.refresh();
         //thisEvent.maps.viewVenue.refresh();
     }
     
