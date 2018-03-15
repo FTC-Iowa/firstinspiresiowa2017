@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(h === "test") {
             event_id = "test";
         } else {
-            event_id = "ia";
+            event_id = "nsr";
         }
         //event_id = "test";
         //this.event_collection = this.db.collection("events");
@@ -141,12 +141,12 @@ function loadTeam(number) {
     inspection = null;
     var oldTeamNumber = teamNumber;
     teamNumber = number;
-    if(inspections.black.hasOwnProperty("_" + number)) {
-        inspection = inspections.black["_" + number];
-        division = "black";
-    } else if (inspections.gold.hasOwnProperty("_" + number)) {
-        inspection = inspections.gold["_" + number];
-        division = "gold";
+    if(inspections.ortberg.hasOwnProperty("_" + number)) {
+        inspection = inspections.ortberg["_" + number];
+        division = "ortberg";
+    } else if (inspections.tinker.hasOwnProperty("_" + number)) {
+        inspection = inspections.tinker["_" + number];
+        division = "tinker";
     }
 
     if(inspection) {

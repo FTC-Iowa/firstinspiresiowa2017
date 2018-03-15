@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //    $('header nav a').each(function(i, element){
 //        element.onclick = onButtonClick;
 //    });
-    
+
     try {
         let app = firebase.app();
         let features = ['auth', 'messaging', 'storage', 'firestore'].filter(feature => typeof app[feature] === 'function');
@@ -40,21 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
-    
-    
+
+
     if(event_id) {
         var event_doc = db.collection("events").doc(event_id);
         var e = new Event(event_doc, messaging);
     } else {
 
-    }   
-    
+    }
+
     ui.setPhase("qual");
 });
 
 
 Event.prototype = {
-    
+
     init: function(event_doc, messaging) {
         this.doc = event_doc;
         console.log("init function");
@@ -64,9 +64,9 @@ Event.prototype = {
         this.doc.onSnapshot(function(doc) {
                 thisEvent.onChange(doc);
         });
-        this.notifications = new Notifications(messaging);       
+        this.notifications = new Notifications(messaging);
     },
-    
+
     on_event_first_loaded: function(doc) {
         console.log("on_event_first_loaded function");
         console.log(doc);
@@ -74,33 +74,33 @@ Event.prototype = {
             console.log("Document data:", doc.data());
             //event.event_collection.doc(this.event_id)
             //        .onSnapshot(this.on_event_change);
-            
+
             thisEvent.eventData = doc.data();
-            
+
             //document.getElementById("event_name").innerHTML = thisEvent.eventData.name;
-            
+
             var divCollection = thisEvent.doc.collection("divisions");
-            
+
             divCollection.get().then(function(divSnapshot) {
-               divSnapshot.forEach(thisEvent.create_division); 
+               divSnapshot.forEach(thisEvent.create_division);
             });
-            
+
             if(thisEvent.eventData.hasOwnProperty("phase")) {
                 ui.setPhase(thisEvent.eventData.phase);
             }
-            
+
             if(thisEvent.eventData.hasOwnProperty("awards")) {
                 thisEvent.awards = new Awards(thisEvent.eventData.awards);
             }
-            
-            
+
+
             if(true || thisEvent.eventData.hasOwnProperty("twitter")) {
                 var twitter = document.getElementById("twitter-container");
                 //twitter.setAttribute("data-widget-id", thisEvent.eventData.twitter);
                 twitterInit(document,"script","twitter-wjs");
                 ui.showTwitter();
             }
-            
+
             if(thisEvent.eventData.hasOwnProperty("schedule")) {
                 if(Array.isArray(thisEvent.eventData.date)) {
                     var num = thisEvent.eventData.date.length;
@@ -110,7 +110,7 @@ Event.prototype = {
                         var caldom = document.createElement("div");
                         caldom.setAttribute("id", "calendar-"+i);
                         article.appendChild(caldom);
-                        
+
                         var calendar = {
                             header: {
                                 left: '',
@@ -139,7 +139,7 @@ Event.prototype = {
                         };
                         $('#calendar-' + i).fullCalendar(calendar);
                     }
-                    
+
                 } else {
                     var calendar = {
                         header: {
@@ -169,57 +169,57 @@ Event.prototype = {
                     };
                     $('#calendar').fullCalendar(calendar);
                 }
-                
+
                 //var mapcontainer = document.getElementById("map-container");
 				//var viewer = ImageV
-				
+
                 //$('.pannable-image').ImageViewer({snapView: false});
-		
+
                 thisEvent.maps = new Maps();
-                
+
                 //viewer = ImageViewer('.', {snapView: false});
-                
+
                 //console.log(viewer);
-                
+
                 //ui.showSchedule();
             }
-            
+
             if(thisEvent.eventData.hasOwnProperty("info")) {
                 var info = document.getElementById("event-info-area");
                 //info.innerHTML = thisEvent.eventData.info;
             }
-            
+
             console.log(this.eventData);
             console.log(divCollection);
-            
-            
+
+
         } else {
             console.log("No such document!");
         }
     },
-    
+
     onChange: function(doc) {
         console.log("on_event_change function");
         //console.log(event);
         if(doc) {
             thisEvent.eventData = doc.data();
         }
-        
+
         if(thisEvent.eventData.hasOwnProperty("phase")) {
             ui.setPhase(thisEvent.eventData.phase);
         }
-        
+
         if(thisEvent.hasOwnProperty("divisions")) {
-            if(thisEvent.divisions.hasOwnProperty("black")) {
-                thisEvent.divisions.black.updateInspections(thisEvent.eventData.inspections);
-                thisEvent.divisions.black.updateFinals(thisEvent.eventData.finals);
+            if(thisEvent.divisions.hasOwnProperty("ortberg")) {
+                thisEvent.divisions.ortberg.updateInspections(thisEvent.eventData.inspections);
+                thisEvent.divisions.ortberg.updateFinals(thisEvent.eventData.finals);
             }
-            if(thisEvent.divisions.hasOwnProperty("gold")) {
-                thisEvent.divisions.gold.updateInspections(thisEvent.eventData.inspections);
-                thisEvent.divisions.gold.updateFinals(thisEvent.eventData.finals);
+            if(thisEvent.divisions.hasOwnProperty("tinker")) {
+                thisEvent.divisions.tinker.updateInspections(thisEvent.eventData.inspections);
+                thisEvent.divisions.tinker.updateFinals(thisEvent.eventData.finals);
             }
         }
-        
+
         if(thisEvent.eventData.hasOwnProperty("awards")) {
             if(thisEvent.hasOwnProperty("awards")) {
                 thisEvent.awards.onChange(thisEvent.eventData.awards);
@@ -227,7 +227,7 @@ Event.prototype = {
                 thisEvent.awards = new Awards(thisEvent.eventData.awards);
             }
         }
-        
+
         if(thisEvent.eventData.hasOwnProperty("twitter")) {
             ui.showTwitter();
         }
@@ -244,11 +244,11 @@ Event.prototype = {
         thisEvent.divisions[div_name] = new Division(doc.ref, doc);
         thisEvent.onChange(null); // force an event change to update the UI
     },
-    
+
     topButtonClicked: function(button) {
         console.log(button);
     },
-    
+
     getTeamName: function(teamNumber) {
         for (var key in this.divisions) {
             // skip loop if the property is from prototype
@@ -262,13 +262,13 @@ Event.prototype = {
         }
         return "";
     },
-    
+
     searchTeam: function(team) {
 //        thisEvent.divisions.forEach(function (d) {
 //            d.searchTeam(team);
 //        });
-        
-        
+
+
         for (var key in thisEvent.divisions) {
             // skip loop if the property is from prototype
             if (!thisEvent.divisions.hasOwnProperty(key)) continue;
@@ -277,26 +277,3 @@ Event.prototype = {
         }
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
